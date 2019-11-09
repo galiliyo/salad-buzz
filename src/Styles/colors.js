@@ -1,0 +1,1 @@
+export const saladGreen = '#13ac2a'
