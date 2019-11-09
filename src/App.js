@@ -1,6 +1,7 @@
 import React from "react"
 import { createGlobalStyle } from "styled-components"
 import { Navbar } from "./Navbar/Navbar"
+import { Banner } from "./Banner/Banner"
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Lato', sans-serif;
@@ -16,7 +17,8 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <>
-      <Navbar>Hello</Navbar>
+      <Navbar></Navbar>
+      <Banner></Banner>
       <div>Salad-Bar</div>
       <GlobalStyle />
     </>
