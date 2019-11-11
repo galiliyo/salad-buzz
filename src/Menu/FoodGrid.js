@@ -27,11 +27,17 @@ const Card = styled.div`
     box-shadow: 8px 10px 16px rgba(0, 0, 0, 0.55);
   }
 `
-
-export const FoodCard = ({ item }) => {
+const alertUs = () => {
+  alert("clicked")
+}
+export const FoodCard = ({ item, setOpenFood }) => {
+  FoodCard.displayName = "Food-Card"
   return (
     <div>
-      <Card>
+      <Card
+        onClick={() => {
+          setOpenFood(item)
+        }}>
         <img src={item.img} style={{ width: "100%" }} />
         <CardTitle>{item.name}</CardTitle>
       </Card>
