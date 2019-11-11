@@ -4,16 +4,21 @@ import { Navbar } from "./Navbar/Navbar"
 import { Banner } from "./Banner/Banner"
 import { FoodDialog } from "./FoodDialog/FoodDialog"
 import { Menu } from "./Menu/Menu.js"
+import { Order } from "./Order/Order"
+import { useActiveItem } from "./Hooks/useActiveItem"
+import { useOrders } from "./Hooks/useOrders"
 
 function App() {
-  const [openFood, setOpenFood] = useState()
+  const activeItem = useActiveItem()
+  const orders = useOrders()
   return (
     <>
       <GlobalStyle />
-      <FoodDialog activeItem={openFood} setOpenFood={setOpenFood}></FoodDialog>
+      <FoodDialog {...activeItem} {...orders}></FoodDialog>
       <Navbar />
+      <Order {...orders} />
       <Banner />
-      <Menu setOpenFood={setOpenFood} />
+      <Menu {...activeItem} />
     </>
   )
 }

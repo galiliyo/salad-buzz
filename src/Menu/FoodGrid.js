@@ -20,6 +20,7 @@ const Card = styled.div`
   border-radius: 4px;
   box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.25);
   padding: 10px 10px 40px 10px;
+  background:white;
   transition: all 0.2s
   :hover {
     transform: scale(1.03);
@@ -27,16 +28,14 @@ const Card = styled.div`
     box-shadow: 8px 10px 16px rgba(0, 0, 0, 0.55);
   }
 `
-const alertUs = () => {
-  alert("clicked")
-}
-export const FoodCard = ({ item, setOpenFood }) => {
+
+export const FoodCard = ({ item, setActiveItem }) => {
   FoodCard.displayName = "Food-Card"
   return (
     <div>
       <Card
         onClick={() => {
-          setOpenFood(item)
+          setActiveItem(item)
         }}>
         <img src={item.img} style={{ width: "100%" }} />
         <CardTitle>{item.name}</CardTitle>

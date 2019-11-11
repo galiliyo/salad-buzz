@@ -9,25 +9,24 @@ const MenuStyled = styled.div`
   margin: 0 400px 50px 20px;
 `
 
-const Menu_Title = styled(Title)`
+const MenuTitle = styled(Title)`
   font-size: 32px;
   margin: 10px 0 20px;
 `
 
-export function Menu({ setOpenFood }) {
+export function Menu({ setActiveItem }) {
   return (
     <MenuStyled>
-      <Menu_Title>Menu</Menu_Title>
-      {Object.entries(foods).map(([section, foods]) => (
+      {Object.entries(foods).map(([section, foods], ii) => (
         <>
-          <Title>{section}</Title>
-          <FoodGrid>
+          <MenuTitle key={section + ii}>{section}</MenuTitle>
+          <FoodGrid key={ii}>
             {foods.map((item, i) => {
               return (
                 <FoodCard
                   item={item}
-                  setOpenFood={setOpenFood}
-                  key={i}></FoodCard>
+                  setActiveItem={setActiveItem}
+                  key={item.name}></FoodCard>
               )
             })}
           </FoodGrid>
