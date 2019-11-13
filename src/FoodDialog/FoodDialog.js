@@ -1,7 +1,8 @@
 import React from "react"
-import styled from "styled-components"
+import styled from "styled-components/macro"
 import { Title } from "../Styles/title"
 import { BtnMain, BtnCancel } from "../Styles/buttons"
+import {formatPrice} from "../Data/FoodData" 
 import * as colors from "../Styles/colors"
 
 const DialogShadow = styled.div`
@@ -57,7 +58,7 @@ export function FoodDialog({ activeItem, setActiveItem, orders, setOrders }) {
     setActiveItem()
   }
 
-  const newOrder = { activeItem } 
+  const newOrder = { ...activeItem }
 
   function addToOrder() {
     setOrders([...orders, newOrder])
@@ -78,7 +79,9 @@ export function FoodDialog({ activeItem, setActiveItem, orders, setOrders }) {
 
         <Footer>
           <BtnCancel>Cancel</BtnCancel>
-          <BtnMain onClick={addToOrder}>Add to Order</BtnMain>
+          <BtnMain onClick={addToOrder}>
+            Add to Order: {formatPrice(activeItem.price)}
+          </BtnMain>
         </Footer>
       </Dialog>
     </>

@@ -1,5 +1,5 @@
 import React from "react"
-import styled from "styled-components"
+import styled from "styled-components/macro"
 import { Title } from "../Styles/title"
 import * as colors from "../Styles/colors"
 

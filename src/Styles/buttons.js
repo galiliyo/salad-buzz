@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components/macro"
 
 export const BtnMain = styled.button`
   box-shadow: 0px -1px 14px -7px #3e7327;
@@ -13,7 +13,7 @@ export const BtnMain = styled.button`
   letter-spacing: 1px;
   font-size: 14px;
   text-transform: uppercase;
-  width: 200px;
+  width: 250px;
   padding: 8px 18px;
   text-decoration: none;
   transition: all 0.15s;

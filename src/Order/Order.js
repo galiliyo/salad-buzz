@@ -1,8 +1,10 @@
 import React from "react"
-import styled from "styled-components"
+import styled from "styled-components/macro"
 import * as colors from "../Styles/colors"
 import { BtnMain } from "../Styles/buttons"
 import { Footer } from "../FoodDialog/FoodDialog"
+import { Title } from "../Styles/title"
+import { formatPrice } from "../Data/FoodData"
 
 const OrderStyled = styled.div`
   display: flex;
@@ -18,7 +20,7 @@ const OrderStyled = styled.div`
   height: calc(100vh - 60px);
 `
 const OrderContent = styled.div`
-  padding: 16px 16px 20px 16px;
+  padding: 24px;
   min-height: 100px;
   overflow: auto;
 `
@@ -29,17 +31,34 @@ const BtnOrder = styled(BtnMain)`
   padding: 16px;
   margin-bottom: 24px;
 `
+const OrderItem = styled.div`
+  display: grid;
+  padding: 10px 0;
+  grid-template-columns: 20px 150px 20px 60px;
+  justify-content: space-between;
+  font-family: Lato;
+  font-size: 16px;
+  height: 42px;
+  line-height: 42px;
+
+  color: black;
+  border-bottom: 1px solid grey;
+`
 
 export function Order({ orders, setOrders }) {
   return (
     <>
       <OrderStyled>
         <OrderContent>
-          {orders.map(order => {
+          <Title>Your Order</Title>
+          {orders.map((order, i) => {
             return (
-              <ul>
-                <li>order</li>
-              </ul>
+              <OrderItem key={i}>
+                <div>1</div>
+                <div>{order.name}</div>
+                <div/>
+                <div>{formatPrice(order.price)}</div>
+              </OrderItem>
             )
           })}
         </OrderContent>

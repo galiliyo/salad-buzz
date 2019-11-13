@@ -1,6 +1,7 @@
-import styled from "styled-components"
+import styled from "styled-components/macro"
 import React from "react"
 import { Title } from "../Styles/title"
+import {formatPrice} from "../Data/FoodData"
 
 export const FoodGrid = styled.div`
   display: grid;
@@ -20,8 +21,8 @@ const Card = styled.div`
   border-radius: 4px;
   box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.25);
   padding: 10px 10px 40px 10px;
-  background:white;
-  transition: all 0.2s
+  background: white;
+  transition: all 0.2s;
   :hover {
     transform: scale(1.03);
     cursor: pointer;
@@ -38,7 +39,9 @@ export const FoodCard = ({ item, setActiveItem }) => {
           setActiveItem(item)
         }}>
         <img src={item.img} style={{ width: "100%" }} />
-        <CardTitle>{item.name}</CardTitle>
+        <CardTitle>
+          {item.name} <div>{formatPrice(item.price)}</div>
+        </CardTitle>
       </Card>
     </div>
   )
