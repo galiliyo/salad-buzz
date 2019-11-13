@@ -7,10 +7,13 @@ import { Menu } from "./Menu/Menu.js"
 import { Order } from "./Order/Order"
 import { useActiveItem } from "./Hooks/useActiveItem"
 import { useOrders } from "./Hooks/useOrders"
+import { useTitle } from "./Hooks/useTitle"
 
+// leaf animation on hover
 function App() {
   const activeItem = useActiveItem()
   const orders = useOrders()
+  useTitle({ ...activeItem }, { ...orders })
   return (
     <>
       <GlobalStyle />
