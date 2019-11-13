@@ -6,7 +6,8 @@ export function useTitle({ activeItem, orders }) {
     if (activeItem) {
       document.title = activeItem.name
     } else {
-      document.title = "What's for dinner"
+      document.title = "What's for dinner?"
     }
   })
 }
+ 

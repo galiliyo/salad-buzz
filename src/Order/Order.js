@@ -1,10 +1,11 @@
-import React from "react"
-import styled from "styled-components/macro"
-import * as colors from "../Styles/colors"
-import { BtnMain } from "../Styles/buttons"
-import { Footer } from "../FoodDialog/FoodDialog"
-import { Title } from "../Styles/title"
-import { formatPrice } from "../Data/FoodData"
+import React from "react";
+import styled from "styled-components/macro";
+import * as colors from "../Styles/colors";
+import { BtnMain } from "../Styles/buttons";
+import { Footer } from "../FoodDialog/FoodDialog";
+import { Title } from "../Styles/title";
+import { formatPrice } from "../Data/FoodData";
+import { getPrice } from "../FoodDialog/FoodDialog";
 
 const OrderStyled = styled.div`
   display: flex;
@@ -18,19 +19,19 @@ const OrderStyled = styled.div`
   box-shadow: 0px 0px 6px rgba(0, 0.2, 0, 0.4);
   background: white;
   height: calc(100vh - 60px);
-`
+`;
 const OrderContent = styled.div`
   padding: 24px;
   min-height: 100px;
   overflow: auto;
-`
-const OrderFooter = styled.div``
+`;
+const OrderFooter = styled.div``;
 
 const BtnOrder = styled(BtnMain)`
   width: 100%;
   padding: 16px;
   margin-bottom: 24px;
-`
+`;
 const OrderItem = styled.div`
   display: grid;
   padding: 10px 0;
@@ -43,7 +44,7 @@ const OrderItem = styled.div`
 
   color: black;
   border-bottom: 1px solid grey;
-`
+`;
 
 export function Order({ orders, setOrders }) {
   return (
@@ -54,12 +55,12 @@ export function Order({ orders, setOrders }) {
           {orders.map((order, i) => {
             return (
               <OrderItem key={i}>
-                <div>1</div>
+                <div>{order.qty}</div>
                 <div>{order.name}</div>
-                <div/>
-                <div>{formatPrice(order.price)}</div>
+                <div />
+                <div>{formatPrice(getPrice(order))}</div>
               </OrderItem>
-            )
+            );
           })}
         </OrderContent>
         <Footer>
@@ -67,5 +68,5 @@ export function Order({ orders, setOrders }) {
         </Footer>
       </OrderStyled>
     </>
-  )
+  );
 }
