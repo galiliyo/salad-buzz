@@ -1,7 +1,7 @@
-import React from "react"
-import styled from "styled-components/macro"
-import { Title } from "../Styles/title"
-import * as colors from "../Styles/colors"
+import React from "react";
+import styled from "styled-components/macro";
+import { Title } from "../Styles/title";
+import { colors } from "../Styles/colors";
 
 const NavbarStyled = styled.div`
   top: 0;
@@ -11,19 +11,19 @@ const NavbarStyled = styled.div`
   position: fixed;
   width: 100%;
   z-index: 50;
-`
+`;
 
 const Logo = styled(Title)`
   font-size: 32px;
   letter-spacing: 1px;
   color: white;
   text-shadow: 1px 1px 6px #113300;
-`
+`;
 
 export function Navbar() {
   return (
     <NavbarStyled>
       <Logo>Salad Bar</Logo>
     </NavbarStyled>
-  )
+  );
 }

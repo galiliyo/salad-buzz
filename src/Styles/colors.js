@@ -1,3 +1,7 @@
-export const saladGreen = '#13ac2a'
-export const darkGreen = '#335543'
-export const lightGreen = '#a0ccab'
+export const colors = {
+  saladGreen: "#13ac2a",
+  darkGreen: "#335543",
+  lightGreen: "#a0ccab",
+  darkText: " #3a3c56;",
+  hoverGreen: "#cbfac9"
+};

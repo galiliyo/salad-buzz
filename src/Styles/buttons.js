@@ -17,6 +17,13 @@ export const BtnMain = styled.button`
   padding: 8px;
   text-decoration: none;
   transition: all 0.15s;
+  :disabled,
+  :disabled:hover {
+    background-color: #aaa;
+    background: #aaa;
+    box-shadow: none;
+    border:none
+  }
   :hover {
     box-shadow: 1px 1px 6px #3e7327;
     background: linear-gradient(to bottom, #72b352 5%, #77b55a 100%);

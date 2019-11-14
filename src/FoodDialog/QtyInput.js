@@ -17,7 +17,7 @@ export const QtyInput = ({ qty }) => {
 
   return (
     <QtyContainer>
-      <div>Quantity: </div>
+      <h4>Quantity: </h4>
       <BtnInc disabled={qty.value === 1} onClick={() => updateQty(-1)}>
         -
       </BtnInc>

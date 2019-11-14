@@ -1,4 +1,5 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
+import { colors } from "./colors";
 
 export const GlobalStyle = createGlobalStyle`
   body,html {
@@ -6,16 +7,19 @@ export const GlobalStyle = createGlobalStyle`
     padding:0;
     margin:0;
     background: #edffea;
-   
   }
 
-  h1,h2,h3 {
+  body,html,section,div,footer, h1,h2,h3,h4,h5,p,ul  {
+  box-sizing: border-box;
+}
+
+  h1,h2,h3,h4 {
     font-family: 'Patua One', cursive;
-    margin: 6px;
+    // margin: 6px;
     padding:0px;
     margin-block-start:0;
     margin-block-end:0;
-    color: #668;
+    color: ${colors.darkText};
   }
 
   h2{
@@ -27,6 +31,11 @@ export const GlobalStyle = createGlobalStyle`
     font-size:22px;
   }
 
+  h4{
+    font-weight:normal;
+    font-size:18px;
+  }
+
   p{
     font-size:16px;
     margin:  0px;
@@ -35,4 +44,9 @@ export const GlobalStyle = createGlobalStyle`
     color: #668;
     
   }
-`
+
+label{
+  font-size:18px;
+}
+
+`;

@@ -5,7 +5,11 @@ import { BtnMain, BtnCancel } from "../Styles/buttons";
 import { formatPrice } from "../Data/FoodData";
 import { QtyInput } from "./QtyInput";
 import { useQty } from "../Hooks/useQty";
-import * as colors from "../Styles/colors";
+import { useToppings } from "../Hooks/useToppings";
+import { useChoice } from "../Hooks/useChoice";
+import { Toppings } from "./Toppings";
+import { Choices } from "./Choices";
+import { PRICE_PER_TOPPING } from "../Data/FoodData";
 
 const DialogShadow = styled.div`
   position: fixed;
@@ -24,7 +28,7 @@ const Dialog = styled.div`
   max-height: calc(100vh - 130px);
   background: white;
   position: fixed;
-  padding: 12px 12px 0 12px;
+  padding: 18px 18px 0 18px;
   box-shadow: 12px 12px 8px 4px rgba(0, 0, 0, 0.9);
   border-radius: 2px;
   z-index: 30;
@@ -35,13 +39,14 @@ const Dialog = styled.div`
 
 const DialogBanner = styled.div`
   min-height: 200px;
-  ${({ img }) => `background-image:url(${img});`};
+  ${({ img }) => (img ? `background-image:url(${img});` : `display:none`)};
   background-size: cover;
   background-position: center;
+  margin-bottom: 12px;
 `;
 
 export const DialogContent = styled.div`
-  padding: 12px 12px 20px 12px;
+  /* padding: 12px 12px 20px 12px; */
   min-height: 100px;
   overflow: auto;
 `;
@@ -60,39 +65,74 @@ export function FoodDialog(props) {
 }
 
 export function getPrice(order) {
-  return order.qty * order.price;
+  let noOfToppings = order.toppings.filter(topping => topping.checked).length;
+  return order.qty * (order.price + noOfToppings * PRICE_PER_TOPPING);
+}
+
+function hasToppings({ section }) {
+  return section === "Salad";
 }
 
 function FoodDialogContainer({ activeItem, setActiveItem, orders, setOrders }) {
   FoodDialog.displayName = "Food-Dialog";
 
   const qty = useQty(activeItem && activeItem.qty);
+  const toppings = useToppings(activeItem.toppings);
+  const choiceRadio = useChoice();
+  const isEditing = activeItem.idx > -1;
+  console.log("isEditing", activeItem.idx);
   function closeDialog() {
     setActiveItem();
   }
 
-  const newOrder = { ...activeItem, qty: qty.value };
+  const newOrder = {
+    ...activeItem,
+    qty: qty.value,
+    toppings: toppings.toppings,
+    selection: choiceRadio.value
+  };
 
   function addToOrder() {
     setOrders([...orders, newOrder]);
     closeDialog();
   }
+
+  function editOrder() {
+    const newOrders = [...orders];
+    newOrders[activeItem.idx] = newOrder;
+    console.log("newOrders, activeItem.idx", newOrders, activeItem.idx);
+    setOrders(newOrders);
+    closeDialog();
+  }
+
   return (
     <>
       <DialogShadow onClick={closeDialog} />
       <Dialog>
         <DialogBanner img={activeItem.img} />
         <DialogContent>
-          <Title>{activeItem.name}</Title>
+          <h2>{activeItem.name}</h2>
           <QtyInput qty={qty} />
-          <p>{activeItem.desc}</p>
+          {hasToppings(activeItem) && (
+            <>
+              <h4>Choose Toppings</h4>
+              <Toppings {...toppings} />
+            </>
+          )}
+          {activeItem.choices && (
+            <Choices activeItem={activeItem} choiceRadio={choiceRadio} />
+          )}
         </DialogContent>
         <img src="/img/leaf-divider.png" />
 
         <Footer>
           <BtnCancel>Cancel</BtnCancel>
-          <BtnMain onClick={addToOrder}>
-            Add to Order: {formatPrice(getPrice(newOrder))}
+          <BtnMain
+            onClick={isEditing ? editOrder : addToOrder}
+            disabled={activeItem.choices && !newOrder.selection}
+          >
+            {isEditing ? "Edit" : "Add to"} Order:{" "}
+            {formatPrice(getPrice(newOrder))}
           </BtnMain>
         </Footer>
       </Dialog>

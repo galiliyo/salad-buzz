@@ -20,7 +20,7 @@ function App() {
       <GlobalStyle />
       <FoodDialog {...activeItem} {...orders}></FoodDialog>
       <Navbar />
-      <Order {...orders} />
+      <Order {...orders} {...activeItem} />
       <Banner />
       <Menu {...activeItem} />
     </>
