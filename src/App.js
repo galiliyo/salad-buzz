@@ -9,6 +9,11 @@ import { useActiveItem } from "./Hooks/useActiveItem";
 import { useOrders } from "./Hooks/useOrders";
 import { useTitle } from "./Hooks/useTitle";
 
+let auth = window.firebase.auth();
+const provider = new window.firebase.auth.GoogleAuthProvider();
+
+auth.signInWithPopup(provider);
+
 // leaf animation on hover
 function App() {
   const activeItem = useActiveItem();
