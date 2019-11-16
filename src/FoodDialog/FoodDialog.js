@@ -80,7 +80,6 @@ function FoodDialogContainer({ activeItem, setActiveItem, orders, setOrders }) {
   const toppings = useToppings(activeItem.toppings);
   const choiceRadio = useChoice();
   const isEditing = activeItem.idx > -1;
-  console.log("isEditing", activeItem.idx);
   function closeDialog() {
     setActiveItem();
   }

@@ -6,6 +6,7 @@ import { BtnMain } from "../Styles/buttons";
 import { Title } from "../Styles/title";
 import { formatPrice } from "../Data/FoodData";
 import { getPrice } from "../FoodDialog/FoodDialog";
+const database = window.firebase.database();
 
 const OrderStyled = styled.section`
   display: flex;
@@ -58,6 +59,29 @@ const BtnOrder = styled(BtnMain)`
   margin: 0;
   padding: 16px;
 `;
+function sendOrder(orders, { email, displayName }) {
+  const newOrderRef = database.ref("orders").push();
+
+  const newOrders = orders.map(order => {
+    return Object.keys(order).reduce((acc, orderKey) => {
+      if (!order[orderKey] || orderKey === "desc") {
+        //}
+        return acc;
+      }
+      if (orderKey === "toppings") {
+        return {
+          ...acc,
+          [orderKey]: order[orderKey]
+            .filter(({ checked }) => checked)
+            .map(({ name }) => name)
+        };
+      }
+      return { ...acc, [orderKey]: order[orderKey] };
+    }, {});
+  });
+
+  newOrderRef.set({ order: newOrders, email, displayName });
+}
 
 export function Order({ orders, setOrders, setActiveItem, loggedIn, login }) {
   const subTotal = orders.reduce((total, currOrder) => {
@@ -106,6 +130,7 @@ export function Order({ orders, setOrders, setActiveItem, loggedIn, login }) {
           <BtnOrder
             onClick={() => {
               if (loggedIn) {
+                sendOrder(orders, loggedIn);
               } else {
                 login();
               }
