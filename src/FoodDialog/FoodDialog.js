@@ -131,7 +131,7 @@ function FoodDialogContainer({ activeItem, setActiveItem, orders, setOrders }) {
             onClick={isEditing ? editOrder : addToOrder}
             disabled={activeItem.choices && !newOrder.selection}
           >
-            {isEditing ? "Edit" : "Add to"} Order:{" "}
+            {isEditing ? "Edit Order" : "Add to Order"} :{" "}
             {formatPrice(getPrice(newOrder))}
           </BtnMain>
         </Footer>

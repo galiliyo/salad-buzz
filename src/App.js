@@ -8,24 +8,24 @@ import { Order } from "./Order/Order";
 import { useActiveItem } from "./Hooks/useActiveItem";
 import { useOrders } from "./Hooks/useOrders";
 import { useTitle } from "./Hooks/useTitle";
+import { useAuth } from "./Hooks/useAuth";
 
-let auth = window.firebase.auth();
-const provider = new window.firebase.auth.GoogleAuthProvider();
-
-auth.signInWithPopup(provider);
+const database = window.firebase.database();
+const refTest = database.ref("testObj").push();
+refTest.set({ hello: "World" });
 
 // leaf animation on hover
 function App() {
   const activeItem = useActiveItem();
   const orders = useOrders();
-  // const qty=useQty(1)
+  const auth = useAuth();
   useTitle({ ...activeItem }, { ...orders });
   return (
     <>
       <GlobalStyle />
       <FoodDialog {...activeItem} {...orders}></FoodDialog>
-      <Navbar />
-      <Order {...orders} {...activeItem} />
+      <Navbar {...auth} />
+      <Order {...orders} {...activeItem} {...auth} />
       <Banner />
       <Menu {...activeItem} />
     </>

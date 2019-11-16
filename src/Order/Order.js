@@ -59,7 +59,7 @@ const BtnOrder = styled(BtnMain)`
   padding: 16px;
 `;
 
-export function Order({ orders, setOrders, setActiveItem }) {
+export function Order({ orders, setOrders, setActiveItem, loggedIn, login }) {
   const subTotal = orders.reduce((total, currOrder) => {
     return getPrice(currOrder) + total;
   }, 0);
@@ -103,7 +103,16 @@ export function Order({ orders, setOrders, setActiveItem }) {
             <h3>Total: </h3>
             <h3>{formatPrice(subTotal)}</h3>
           </Subtotal>
-          <BtnOrder>Order</BtnOrder>
+          <BtnOrder
+            onClick={() => {
+              if (loggedIn) {
+              } else {
+                login();
+              }
+            }}
+          >
+            Order
+          </BtnOrder>
         </Footer>
       </OrderStyled>
     </>
