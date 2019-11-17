@@ -11,7 +11,7 @@ import { Toppings } from "./Toppings";
 import { Choices } from "./Choices";
 import { PRICE_PER_TOPPING } from "../Data/FoodData";
 
-const DialogShadow = styled.div`
+export const DialogShadow = styled.div`
   position: fixed;
   height: 100%;
   width: 100%;
@@ -21,10 +21,10 @@ const DialogShadow = styled.div`
   z-index: 20;
 `;
 
-const Dialog = styled.div`
+export const Dialog = styled.div`
   display: flex;
   flex-direction: column;
-  width: 500px;
+
   max-height: calc(100vh - 130px);
   background: white;
   position: fixed;
@@ -47,6 +47,8 @@ const DialogBanner = styled.div`
 
 export const DialogContent = styled.div`
   /* padding: 12px 12px 20px 12px; */
+  width: 500px;
+  text-align: center;
   min-height: 100px;
   overflow: auto;
 `;
@@ -73,7 +75,12 @@ function hasToppings({ section }) {
   return section === "Salad";
 }
 
-function FoodDialogContainer({ activeItem, setActiveItem, orders, setOrders }) {
+export function FoodDialogContainer({
+  activeItem,
+  setActiveItem,
+  orders,
+  setOrders
+}) {
   FoodDialog.displayName = "Food-Dialog";
 
   const qty = useQty(activeItem && activeItem.qty);
@@ -125,8 +132,9 @@ function FoodDialogContainer({ activeItem, setActiveItem, orders, setOrders }) {
         <img src="/img/leaf-divider.png" />
 
         <Footer>
-          <BtnCancel>Cancel</BtnCancel>
+          <BtnCancel width="280">Cancel</BtnCancel>
           <BtnMain
+            width="280"
             onClick={isEditing ? editOrder : addToOrder}
             disabled={activeItem.choices && !newOrder.selection}
           >

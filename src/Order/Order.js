@@ -80,10 +80,19 @@ function sendOrder(orders, { email, displayName }) {
     }, {});
   });
 
-  newOrderRef.set({ order: newOrders, email, displayName });
+  newOrderRef
+    .set({ order: newOrders, email, displayName })
+    .then(() => console.log("successfully set data"));
 }
 
-export function Order({ orders, setOrders, setActiveItem, loggedIn, login }) {
+export function Order({
+  orders,
+  setOrders,
+  setActiveItem,
+  loggedIn,
+  login,
+  toggleOrderCompleteDialog
+}) {
   const subTotal = orders.reduce((total, currOrder) => {
     return getPrice(currOrder) + total;
   }, 0);
@@ -123,14 +132,18 @@ export function Order({ orders, setOrders, setActiveItem, loggedIn, login }) {
           })}
         </OrderContent>
         <Footer>
-          <Subtotal>
-            <h3>Total: </h3>
-            <h3>{formatPrice(subTotal)}</h3>
-          </Subtotal>
+          {orders.length > 0 && (
+            <Subtotal>
+              <h3>Total: </h3>
+              <h3>{formatPrice(subTotal)}</h3>
+            </Subtotal>
+          )}
           <BtnOrder
+            disabled={!orders.length}
             onClick={() => {
               if (loggedIn) {
                 sendOrder(orders, loggedIn);
+                toggleOrderCompleteDialog();
               } else {
                 login();
               }

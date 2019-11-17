@@ -13,7 +13,7 @@ export const BtnMain = styled.button`
   letter-spacing: 1px;
   font-size: 14px;
   text-transform: uppercase;
-  width: 280px;
+  width: ${({ width } ) => `${width}px`};
   padding: 8px;
   text-decoration: none;
   transition: all 0.15s;
@@ -22,7 +22,7 @@ export const BtnMain = styled.button`
     background-color: #aaa;
     background: #aaa;
     box-shadow: none;
-    border:none
+    border: none;
   }
   :hover {
     box-shadow: 1px 1px 6px #3e7327;
