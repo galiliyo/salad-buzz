@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { Title } from "../Styles/title";
 import { BtnMain, BtnCancel } from "../Styles/buttons";
 import { formatPrice } from "../Data/FoodData";
 import { QtyInput } from "./QtyInput";

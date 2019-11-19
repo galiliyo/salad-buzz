@@ -24,7 +24,7 @@ function sendOrderEmail(order) {
   const mailOptions = {
     from: `${APP_NAME} <noreply@salad-buzz.com>`,
     to: order.email,
-    subject: `Your order confiramtion from ${APP_NAME}`
+    subject: `Your order confiramtion from ${APP_NAME}`,
     html: `
     <table style="width:500px; margin auto" >
         <tr>

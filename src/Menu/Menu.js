@@ -5,12 +5,19 @@ import { Title } from "../Styles/title.js";
 import { FoodCard, FoodGrid } from "./FoodGrid";
 
 const MenuStyled = styled.div`
-  margin: 0 400px 50px 20px;
+  max-width: 1200px;
+  padding: 0px 300px 24px 24px;
+  margin: -40px auto ;
+
+  @media (max-width: 1354px) {
+    padding: 0 24px 40px;
+    margin: -40px auto;
+  }
 `;
 
 const MenuTitle = styled(Title)`
   font-size: 28px;
-  margin: 10px 0 20px;
+  margin: 30px 0 0px;
 `;
 
 export function Menu({ setActiveItem }) {

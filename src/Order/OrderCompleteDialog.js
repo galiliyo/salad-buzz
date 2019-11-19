@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { DialogShadow, Dialog, DialogContent } from "../FoodDialog/FoodDialog";
-import { BtnMain, BtnCancel } from "../Styles/buttons";
+import { BtnMain } from "../Styles/buttons";
 
 const OrderCompleteDialogContent = styled(DialogContent)`
   width: 300px;

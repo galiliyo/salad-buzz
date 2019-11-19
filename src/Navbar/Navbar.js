@@ -1,49 +1,104 @@
 import React from "react";
 import styled from "styled-components/macro";
+import { Dropdown } from "../UI/Dropdown";
 import { Title } from "../Styles/title";
 import { colors } from "../Styles/colors";
+import { ShoppingCartContainer } from "./ShoppingCartContainer";
+import { SvgSingleNeutralCircle } from "../SvgIcons/SvgSingleNeutralCircle";
+import { useOrders } from "../Hooks/useOrders";
 
 const NavbarStyled = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   top: 0;
-  padding: 12px;
+  height: 60px;
+  padding: 0 24px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   background-color: ${colors.saladGreen};
   position: fixed;
   width: 100%;
   z-index: 50;
 `;
-const BtnLogin = styled.button``;
+const BtnLogin = styled.button`
+  color: #fff;
+  font-family: lato;
+  font-size: 18px;
+  color: white;
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  cursor: pointer;
+`;
 
 const Logo = styled(Title)`
   font-size: 32px;
   letter-spacing: 1px;
-  color: white;
-  text-shadow: 1px 1px 6px #113300;
+  color: #fff;
+  text-shadow: 1px 1px 6px ${colors.darkgreen};
 `;
 
 const UserStatus = styled.div`
   display: flex;
+  position: relative;
   color: white;
   font-size: 14px;
-  margin-right: 30px;
 `;
 
-export function Navbar({ login, logout, loggedIn }) {
+const LoggedInContainer = styled.div`
+  display: flex;
+  align-items: middle;
+`;
+
+const UserIcon = styled(SvgSingleNeutralCircle)`
+  fill: white;
+  margin-left: 12px;
+  transition: transform 0.2s;
+  :hover {
+    transform: scale(1.15);
+  }
+`;
+
+const Greeting = styled.h5`
+  display: block;
+  margin-left: 12px;
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+export function Navbar({
+  login,
+  logout,
+  loggedIn,
+  isSmallScreen,
+  open,
+  setOpen,
+  orders,
+  setOrders
+}) {
+  let width = window.innerWidth;
+
   return (
     <NavbarStyled>
       <Logo>Salad Bar</Logo>
       <UserStatus>
         {loggedIn !== "loading" ? (
           <>
-            {loggedIn ? "Logged In" : ""}
             {loggedIn ? (
-              <>
-                <div>Hello {loggedIn.displayName}</div>
-                <BtnLogin onClick={logout}>Logout</BtnLogin>
-              </>
+              <LoggedInContainer>
+                {isSmallScreen && (
+                  <ShoppingCartContainer
+                    orders={orders}
+                    setOrders={setOrders}
+                  />
+                )}
+                <UserIcon onClick={() => setOpen(true)} />
+                <Greeting>Hello {loggedIn.displayName.split(" ")[0]}</Greeting>
+                {open && (
+                  <Dropdown logout={logout} data-ref="drop-down"></Dropdown>
+                )}
+              </LoggedInContainer>
             ) : (
               <BtnLogin onClick={login}>{"Login"}</BtnLogin>
             )}

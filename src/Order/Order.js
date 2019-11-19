@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components/macro";
 import { colors } from "../Styles/colors";
 import { BtnMain } from "../Styles/buttons";
-// import { Footer } from "../FoodDialog/FoodDialog";
-import { Title } from "../Styles/title";
 import { formatPrice } from "../Data/FoodData";
 import { getPrice } from "../FoodDialog/FoodDialog";
 const database = window.firebase.database();
@@ -21,6 +19,20 @@ const OrderStyled = styled.section`
   box-shadow: 0px 0px 6px rgba(0, 0.2, 0, 0.4);
   background: white;
   height: calc(100vh - 60px);
+  z-index: 30;
+  @media (max-width: 1354px) {
+    width: 90%;
+    max-width: 360px;
+    left: ${props => (props ? `100%` : `50%`)};
+    transform: translateX(-100%);
+  }
+  @media (max-width: 640px) {
+    position: fixed;
+    max-width: initial;
+    transform: initial;
+    width: 100%;
+    left: 0%;
+  }
 `;
 const OrderContent = styled.div`
   /* min-height: 100px;

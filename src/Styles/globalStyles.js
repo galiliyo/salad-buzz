@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 
-  h1,h2,h3,h4 {
+  h1,h2,h3,h4,h5 {
     font-family: 'Patua One', cursive;
     // margin: 6px;
     padding:0px;
@@ -35,8 +35,15 @@ export const GlobalStyle = createGlobalStyle`
     font-weight:normal;
     font-size:18px;
   }
+  h5{
+    font-weight:normal;
+    font-family: Lato;
+    font-size:18px;
+    color:#fff;
+    line-height:32px;
+  }
 
-  p{
+  p,a{
     font-size:16px;
     margin:  0px;
     margin-bottom:  12px;
