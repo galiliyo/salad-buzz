@@ -25,9 +25,7 @@ const CartContainer = styled.div`
   }
 `;
 const Badge = styled.div`
-
-${flag => orderAddedKF}
-  /* animation: ${orderAdded} 0.6s ease-in-out; */
+  ${flag => orderAddedKF}
   animation-iteration-count: 2;
 `;
 
@@ -48,7 +46,7 @@ const Circle = styled.div`
   border-radius: 50%;
 `;
 
-export function ShoppingCartContainer({ orders, setOrders }) {
+export function ShoppingCartContainer({ orders, setOrders, orderVisible ,setOrderVisible }) {
   let noOfOrders = orders.length;
   const subTotal = orders.reduce((total, currOrder) => {
     return currOrder.price + total;
@@ -61,7 +59,7 @@ export function ShoppingCartContainer({ orders, setOrders }) {
   }
 
   return (
-    <CartContainer>
+    <CartContainer onClick={() => setOrderVisible(!orderVisible)}>
       {noOfOrders > 0 && (
         <Badge onClick={refresh}>
           <Circle />

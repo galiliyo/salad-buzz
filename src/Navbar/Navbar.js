@@ -5,7 +5,6 @@ import { Title } from "../Styles/title";
 import { colors } from "../Styles/colors";
 import { ShoppingCartContainer } from "./ShoppingCartContainer";
 import { SvgSingleNeutralCircle } from "../SvgIcons/SvgSingleNeutralCircle";
-import { useOrders } from "../Hooks/useOrders";
 
 const NavbarStyled = styled.div`
   display: flex;
@@ -75,10 +74,12 @@ export function Navbar({
   open,
   setOpen,
   orders,
-  setOrders
+  setOrders,
+  orderVisible,
+  setOrderVisible
 }) {
   let width = window.innerWidth;
-
+  // why does click not register  93
   return (
     <NavbarStyled>
       <Logo>Salad Bar</Logo>
@@ -89,8 +90,11 @@ export function Navbar({
               <LoggedInContainer>
                 {isSmallScreen && (
                   <ShoppingCartContainer
+                    onClick={() => console.log("click")}
                     orders={orders}
                     setOrders={setOrders}
+                    orderVisible={orderVisible}
+                    setOrderVisible={setOrderVisible}
                   />
                 )}
                 <UserIcon onClick={() => setOpen(true)} />

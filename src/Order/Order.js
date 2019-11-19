@@ -20,10 +20,12 @@ const OrderStyled = styled.section`
   background: white;
   height: calc(100vh - 60px);
   z-index: 30;
+  transition: right 0.3s;
   @media (max-width: 1354px) {
     width: 90%;
     max-width: 360px;
-    left: ${props => (props ? `100%` : `50%`)};
+
+    right: ${props => (props.visible ? `-360px ` : "-720px")};
     transform: translateX(-100%);
   }
   @media (max-width: 640px) {
@@ -103,7 +105,9 @@ export function Order({
   setActiveItem,
   loggedIn,
   login,
-  toggleOrderCompleteDialog
+  toggleOrderCompleteDialog,
+  orderVisible,
+  setOrderVisible
 }) {
   const subTotal = orders.reduce((total, currOrder) => {
     return getPrice(currOrder) + total;
@@ -118,7 +122,10 @@ export function Order({
 
   return (
     <>
-      <OrderStyled>
+      <OrderStyled
+        visible={orderVisible}
+        onClick={() => setOrderVisible(!orderVisible)}
+      >
         <OrderContent>
           <h2>Your Order</h2>
 

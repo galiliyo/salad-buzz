@@ -10,16 +10,6 @@ import { Toppings } from "./Toppings";
 import { Choices } from "./Choices";
 import { PRICE_PER_TOPPING } from "../Data/FoodData";
 
-export const DialogShadow = styled.div`
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  background-color: black;
-  opacity: 0.6;
-  z-index: 20;
-`;
-
 export const Dialog = styled.div`
   display: flex;
   flex-direction: column;
@@ -60,9 +50,16 @@ export const Footer = styled.div`
   flex: 0 0 60px;
 `;
 
-export function FoodDialog(props) {
+export function FoodDialog(props
+) {
   if (!props.activeItem) return null;
-  else return <FoodDialogContainer {...props} />;
+  else
+    return (
+      <FoodDialogContainer
+        
+        {...props}
+      />
+    );
 }
 
 export function getPrice(order) {
@@ -87,7 +84,7 @@ export function FoodDialogContainer({
   const choiceRadio = useChoice();
   const isEditing = activeItem.idx > -1;
   function closeDialog() {
-    setActiveItem();
+    setActiveItem(false);
   }
 
   const newOrder = {
@@ -112,7 +109,6 @@ export function FoodDialogContainer({
 
   return (
     <>
-      <DialogShadow onClick={closeDialog} />
       <Dialog>
         <DialogBanner img={activeItem.img} />
         <DialogContent>

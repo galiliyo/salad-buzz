@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-
-import { DialogShadow, Dialog, DialogContent } from "../FoodDialog/FoodDialog";
+import {DialogShadow} from "../UI/DialogShadow"
+import { Dialog, DialogContent } from "../FoodDialog/FoodDialog";
 import { BtnMain } from "../Styles/buttons";
 
 const OrderCompleteDialogContent = styled(DialogContent)`

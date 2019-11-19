@@ -3,6 +3,7 @@ import { GlobalStyle } from "./Styles/globalStyles";
 import { Navbar } from "./Navbar/Navbar";
 import { Banner } from "./Banner/Banner";
 import { FoodDialog } from "./FoodDialog/FoodDialog";
+import { DialogShadow } from "./UI/DialogShadow";
 import { Menu } from "./Menu/Menu.js";
 import { Order } from "./Order/Order";
 import { useActiveItem } from "./Hooks/useActiveItem";
@@ -15,6 +16,7 @@ import { useOrderVisible } from "./Hooks/useOrderVisible";
 import { useSmallScreen } from "./Hooks/useSmallScreen";
 import { useLogoutDropDown } from "./Hooks/useLogoutDropDown";
 import { useOrderCompleteDialog } from "./Hooks/useOrderCompleteDialog";
+import { useDialogShadow } from "./Hooks/useDialogShadow";
 
 const TestModal = styled.div`
   padding: 20px;
@@ -36,21 +38,36 @@ function App() {
   const smallScreen = useSmallScreen();
   const logoutDropDown = useLogoutDropDown();
   const orderVisible = useOrderVisible();
+  const dialogShadow = useDialogShadow({ ...activeItem });
 
   useTitle({ ...activeItem }, { ...orders });
 
   return (
     <>
       <GlobalStyle />
+      {dialogShadow.dialogShadow && <DialogShadow />}
       {orderCompleteDialog.orderDialogVisible && (
         <OrderCompleteDialog {...orderCompleteDialog} {...orders} />
       )}
-      <FoodDialog {...activeItem} {...orders}></FoodDialog>
-      <Navbar {...auth} {...smallScreen} {...logoutDropDown} {...orders} />
+      <FoodDialog {...activeItem} {...orders} {...dialogShadow}></FoodDialog>
+      <Navbar
+        {...auth}
+        {...smallScreen}
+        {...logoutDropDown}
+        {...orders}
+        {...orderVisible}
+      />
 
-      <Order {...orders} {...activeItem} {...auth} {...orderCompleteDialog} />
+      <Order
+        {...orders}
+        {...activeItem}
+        {...auth}
+        {...orderCompleteDialog}
+        {...orderVisible}
+        {...dialogShadow}
+      />
       <Banner />
-      <Menu {...activeItem} />
+      <Menu {...activeItem} {...orderVisible} />
     </>
   );
 }
