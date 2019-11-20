@@ -15,6 +15,8 @@ const NavbarStyled = styled.div`
   padding: 0 24px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   background-color: ${colors.saladGreen};
+  background-image: url("/img/mast-head.svg");
+  background-repeat: no-repeat;
   position: fixed;
   width: calc(100vw);
   z-index: 50;
@@ -83,7 +85,7 @@ export function Navbar({
   // why does click not register  93
   return (
     <NavbarStyled>
-      <Logo>Salad Bar</Logo>
+      <Logo/>
       <UserStatus>
         {loggedIn !== "loading" ? (
           <>

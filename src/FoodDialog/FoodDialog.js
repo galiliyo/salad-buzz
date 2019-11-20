@@ -26,6 +26,12 @@ export const Dialog = styled.div`
   left: 50%;
   transform: translateX(-50%);
   top: 80px;
+  @media (max-width: 640px) {
+    width: 100%;
+    top: 60px;
+    max-height:initial;
+    height: calc(100vh );
+  }
 `;
 
 const DialogBanner = styled.div`
@@ -37,7 +43,6 @@ const DialogBanner = styled.div`
 `;
 
 export const DialogContent = styled.div`
- 
   min-height: 100px;
   overflow: auto;
 `;

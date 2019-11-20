@@ -5,7 +5,7 @@ export const BtnMain = styled.button`
   box-shadow: 0px -1px 14px -7px ${colors.darkGreen};
   background: linear-gradient(
     to bottom,
-    ${colors.hoverGreen} 5%,
+    ${colors.veryGreen} 5%,
     ${colors.saladGreen} 100%
   );
   background-color: ${colors.saladGreen};
@@ -73,7 +73,7 @@ export const BtnInc = styled(BtnMain)`
     background: linear-gradient(
       to bottom,
       ${colors.saladGreen} 5%,
-      ${colors.hoverGreen} 100%
+      ${colors.veryGreen} 100%
     );
     background-color: ${colors.saladGreen};
   }

@@ -6,6 +6,9 @@ const ToppingGrid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
   margin-bottom: 12px;
+  @media (max-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 const ToppingCheckbox = styled.input`
