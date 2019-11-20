@@ -16,7 +16,7 @@ const NavbarStyled = styled.div`
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   background-color: ${colors.saladGreen};
   position: fixed;
-  width: 100%;
+  width: calc(100vw);
   z-index: 50;
 `;
 const BtnLogin = styled.button`
@@ -34,7 +34,7 @@ const Logo = styled(Title)`
   font-size: 32px;
   letter-spacing: 1px;
   color: #fff;
-  text-shadow: 1px 1px 6px ${colors.darkgreen};
+  /* text-shadow: 1px 1px 6px ${colors.darkgreen}; */
 `;
 
 const UserStatus = styled.div`
@@ -76,7 +76,8 @@ export function Navbar({
   orders,
   setOrders,
   orderVisible,
-  setOrderVisible
+  setOrderVisible,
+  activeItem
 }) {
   let width = window.innerWidth;
   // why does click not register  93
@@ -95,6 +96,7 @@ export function Navbar({
                     setOrders={setOrders}
                     orderVisible={orderVisible}
                     setOrderVisible={setOrderVisible}
+                    activeItem={activeItem}
                   />
                 )}
                 <UserIcon onClick={() => setOpen(true)} />

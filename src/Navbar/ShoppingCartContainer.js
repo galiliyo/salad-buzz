@@ -5,6 +5,9 @@ import { SvgShoppingCart } from "../SvgIcons/SvgShoppingCart";
 const ShoppingCartIcon = styled(SvgShoppingCart)`
   fill: white;
   margin-left: 12px;
+  &:active {
+    fill: blue;
+  }
 `;
 
 const orderAdded = keyframes`
@@ -46,7 +49,13 @@ const Circle = styled.div`
   border-radius: 50%;
 `;
 
-export function ShoppingCartContainer({ orders, setOrders, orderVisible ,setOrderVisible }) {
+export function ShoppingCartContainer({
+  orders,
+  setOrders,
+  orderVisible,
+  setOrderVisible,
+  activeItem
+}) {
   let noOfOrders = orders.length;
   const subTotal = orders.reduce((total, currOrder) => {
     return currOrder.price + total;
@@ -54,19 +63,24 @@ export function ShoppingCartContainer({ orders, setOrders, orderVisible ,setOrde
 
   // TODO animate on refresh
 
+  function toggleOrderPanelVisibility() {
+    !activeItem && setOrderVisible(!orderVisible);
+    return;
+  }
+
   function refresh() {
     setOrders([...orders]);
   }
 
   return (
-    <CartContainer onClick={() => setOrderVisible(!orderVisible)}>
+    <CartContainer onClick={toggleOrderPanelVisibility}>
       {noOfOrders > 0 && (
         <Badge onClick={refresh}>
           <Circle />
           <Number>{noOfOrders}</Number>
         </Badge>
       )}
-      <ShoppingCartIcon />
+      <ShoppingCartIcon active={activeItem} />
     </CartContainer>
   );
 }

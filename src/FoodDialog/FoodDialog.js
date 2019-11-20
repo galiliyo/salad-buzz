@@ -13,11 +13,13 @@ import { PRICE_PER_TOPPING } from "../Data/FoodData";
 export const Dialog = styled.div`
   display: flex;
   flex-direction: column;
-
+  text-align: left;
+  width: 90%;
+  max-width: 600px;
   max-height: calc(100vh - 130px);
   background: white;
   position: fixed;
-  padding: 18px 18px 0 18px;
+  padding: 24px 24px 0 24px;
   box-shadow: 12px 12px 8px 4px rgba(0, 0, 0, 0.9);
   border-radius: 2px;
   z-index: 30;
@@ -35,9 +37,7 @@ const DialogBanner = styled.div`
 `;
 
 export const DialogContent = styled.div`
-  /* padding: 12px 12px 20px 12px; */
-  width: 500px;
-  text-align: center;
+ 
   min-height: 100px;
   overflow: auto;
 `;
@@ -45,21 +45,14 @@ export const Footer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   padding: 0 12px;
   flex: 0 0 60px;
 `;
 
-export function FoodDialog(props
-) {
+export function FoodDialog(props) {
   if (!props.activeItem) return null;
-  else
-    return (
-      <FoodDialogContainer
-        
-        {...props}
-      />
-    );
+  else return <FoodDialogContainer {...props} />;
 }
 
 export function getPrice(order) {
@@ -127,9 +120,11 @@ export function FoodDialogContainer({
         <img src="/img/leaf-divider.png" />
 
         <Footer>
-          <BtnCancel width="280">Cancel</BtnCancel>
+          <BtnCancel width="45%" onClick={closeDialog}>
+            Cancel
+          </BtnCancel>
           <BtnMain
-            width="280"
+            width="45%"
             onClick={isEditing ? editOrder : addToOrder}
             disabled={activeItem.choices && !newOrder.selection}
           >

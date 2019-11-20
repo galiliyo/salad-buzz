@@ -5,9 +5,16 @@ import { BtnInc } from "../Styles/buttons";
 const QtyInputStyled = styled.input`
   font-size: 16px;
   width: 24px;
+  margin:24px 0;
   text-align: center;
   border: none;
   outline: none;
+`;
+
+const QtyContainer = styled.div`
+  display: flex;
+  align-items:center;
+  line-height: 26px;
 `;
 
 export const QtyInput = ({ qty }) => {
@@ -17,7 +24,7 @@ export const QtyInput = ({ qty }) => {
 
   return (
     <QtyContainer>
-      <h4>Quantity: </h4>
+      <h4>Quantity </h4>
       <BtnInc disabled={qty.value === 1} onClick={() => updateQty(-1)}>
         -
       </BtnInc>
@@ -26,9 +33,3 @@ export const QtyInput = ({ qty }) => {
     </QtyContainer>
   );
 };
-
-const QtyContainer = styled.div`
-  display: flex;
-  align-items: middle;
-  line-height: 26px;
-`;

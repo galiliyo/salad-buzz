@@ -38,7 +38,7 @@ function App() {
   const smallScreen = useSmallScreen();
   const logoutDropDown = useLogoutDropDown();
   const orderVisible = useOrderVisible();
-  const dialogShadow = useDialogShadow({ ...activeItem });
+  const dialogShadow = useDialogShadow({ ...activeItem, ...orderVisible });
 
   useTitle({ ...activeItem }, { ...orders });
 
@@ -56,11 +56,13 @@ function App() {
         {...logoutDropDown}
         {...orders}
         {...orderVisible}
+        {...activeItem}
       />
 
       <Order
         {...orders}
         {...activeItem}
+        {...smallScreen}
         {...auth}
         {...orderCompleteDialog}
         {...orderVisible}

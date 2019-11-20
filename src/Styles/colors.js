@@ -3,5 +3,7 @@ export const colors = {
   darkGreen: "#335543",
   lightGreen: "#a0ccab",
   darkText: " #3a3c56;",
-  hoverGreen: "#cbfac9"
+  hoverGreen: "#77b55a",
+  darkGrey:"#aaa",
+  reddishRed:"#ea3752"
 };

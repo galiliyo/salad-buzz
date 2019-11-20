@@ -8,15 +8,11 @@ export const GlobalStyle = createGlobalStyle`
     margin:0;
     background: #edffea;
   }
-
-  body,html,section,div,footer, h1,h2,h3,h4,h5,p,ul  {
-  box-sizing: border-box;
-}
+ *{ box-sizing: border-box;}
 
   h1,h2,h3,h4,h5 {
     font-family: 'Patua One', cursive;
-    // margin: 6px;
-    padding:0px;
+ 
     margin-block-start:0;
     margin-block-end:0;
     color: ${colors.darkText};
@@ -48,7 +44,7 @@ export const GlobalStyle = createGlobalStyle`
     margin:  0px;
     margin-bottom:  12px;
     padding:0px;
-    color: #668;
+    color: ${colors.darkText};
     
   }
 

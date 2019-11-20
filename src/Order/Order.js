@@ -4,14 +4,20 @@ import { colors } from "../Styles/colors";
 import { BtnMain } from "../Styles/buttons";
 import { formatPrice } from "../Data/FoodData";
 import { getPrice } from "../FoodDialog/FoodDialog";
+import { SvgClose } from "../SvgIcons/SvgClose";
 const database = window.firebase.database();
 
-const OrderStyled = styled.section`
+const OrderStyledContainer = styled.section`
+  /* overflow: hidden;
+  width: 100vw; */
+`;
+
+const OrderStyled = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: fixed;
-  padding: 24px 18px;
+  padding: 24px 18px 36px 18px;
   right: 0;
   top: 60px;
   width: 320px;
@@ -20,31 +26,32 @@ const OrderStyled = styled.section`
   background: white;
   height: calc(100vh - 60px);
   z-index: 30;
-  transition: right 0.3s;
+  transition: all 0.4s;
   @media (max-width: 1354px) {
     width: 90%;
     max-width: 360px;
-
-    right: ${props => (props.visible ? `-360px ` : "-720px")};
-    transform: translateX(-100%);
+    right: 0;
+    transform: translateX(${props => (props.visible ? `-0 ` : "100%")});
   }
   @media (max-width: 640px) {
-    position: fixed;
+    transform: translateX(${props => (props.visible ? `-0 ` : "100%")});
     max-width: initial;
-    transform: initial;
+    position: absolute;
     width: 100%;
-    left: 0%;
+    top: 60px;
   }
 `;
 const OrderContent = styled.div`
-  /* min-height: 100px;
-  overflow: auto; */
+  margin: 6px 0 24px;
+  min-height: 100px;
+  flex: 10 0 100px;
+  overflow: auto;
 `;
 
 const OrderItem = styled.div`
   display: grid;
-  padding: 10px 0;
-  grid-template-columns: 20px 180px 20px 40px;
+  padding: 12px 6px;
+  grid-template-columns: 18px 170px 18px 44px;
   justify-content: space-between;
   font-family: Lato;
   font-size: 16px;
@@ -56,8 +63,11 @@ const OrderItem = styled.div`
     cursor: pointer;
   }
 `;
-
-const Footer = styled.div`
+const OrderHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const OrderFooter = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -73,6 +83,12 @@ const BtnOrder = styled(BtnMain)`
   margin: 0;
   padding: 16px;
 `;
+
+const CloseIcon = styled(SvgClose)`
+  fill: ${colors.darkText};
+  display: inline-block;
+`;
+
 function sendOrder(orders, { email, displayName }) {
   const newOrderRef = database.ref("orders").push();
 
@@ -107,7 +123,8 @@ export function Order({
   login,
   toggleOrderCompleteDialog,
   orderVisible,
-  setOrderVisible
+  setOrderVisible,
+  isSmallScreen
 }) {
   const subTotal = orders.reduce((total, currOrder) => {
     return getPrice(currOrder) + total;
@@ -121,14 +138,16 @@ export function Order({
   }
 
   return (
-    <>
+    <OrderStyledContainer>
       <OrderStyled
         visible={orderVisible}
         onClick={() => setOrderVisible(!orderVisible)}
       >
+        <OrderHeader>
+          {" "}
+          <h2>Your Order</h2> {isSmallScreen && <CloseIcon />}
+        </OrderHeader>
         <OrderContent>
-          <h2>Your Order</h2>
-
           {orders.map((order, idx) => {
             return (
               <OrderItem
@@ -150,7 +169,7 @@ export function Order({
             );
           })}
         </OrderContent>
-        <Footer>
+        <OrderFooter>
           {orders.length > 0 && (
             <Subtotal>
               <h3>Total: </h3>
@@ -170,8 +189,8 @@ export function Order({
           >
             Order
           </BtnOrder>
-        </Footer>
+        </OrderFooter>
       </OrderStyled>
-    </>
+    </OrderStyledContainer>
   );
 }
