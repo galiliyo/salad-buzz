@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { GlobalStyle } from "./Styles/globalStyles";
-import { Navbar } from "./Navbar/Navbar";
-import { Banner } from "./Banner/Banner";
-import { FoodDialog } from "./FoodDialog/FoodDialog";
-import { DialogShadow } from "./UI/DialogShadow";
-import { Menu } from "./Menu/Menu.js";
-import { Order } from "./Order/Order";
+import { Navbar } from "./Components/Navbar/Navbar";
+import { Banner } from "./Components/Banner/Banner";
+import { FoodDialog } from "./Components/FoodDialog/FoodDialog";
+import { DialogShadow } from "./Components/UI/DialogShadow";
+import { Menu } from "./Components/Menu/Menu";
+import { Modal } from "./Components/UI/Modal";
+import { Order } from "./Components/Order/Order";
 import { useActiveItem } from "./Hooks/useActiveItem";
-import { OrderCompleteDialog } from "./Order/OrderCompleteDialog";
+import { OrderCompleteDialog } from "./Components/Order/OrderCompleteDialog";
 import styled from "styled-components/macro";
 import { useOrders } from "./Hooks/useOrders";
 import { useTitle } from "./Hooks/useTitle";
@@ -17,6 +18,7 @@ import { useSmallScreen } from "./Hooks/useSmallScreen";
 import { useLogoutDropDown } from "./Hooks/useLogoutDropDown";
 import { useOrderCompleteDialog } from "./Hooks/useOrderCompleteDialog";
 import { useDialogShadow } from "./Hooks/useDialogShadow";
+import FadeIn from "./Animations/FadeIn";
 
 const TestModal = styled.div`
   padding: 20px;
@@ -42,10 +44,17 @@ function App() {
 
   useTitle({ ...activeItem }, { ...orders });
 
+  function closeAll() {
+    console.log("close");
+    orderVisible.setOrderVisible(false);
+    activeItem.setActiveItem(null);
+  }
+
   return (
     <>
       <GlobalStyle />
-      {dialogShadow.dialogShadow && <DialogShadow />}
+
+      {dialogShadow.dialogShadow && <DialogShadow onClick={closeAll} />}
       {orderCompleteDialog.orderDialogVisible && (
         <OrderCompleteDialog {...orderCompleteDialog} {...orders} />
       )}

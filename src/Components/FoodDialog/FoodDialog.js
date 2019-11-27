@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { BtnMain, BtnCancel } from "../Styles/buttons";
-import { formatPrice } from "../Data/FoodData";
+import { BtnMain, BtnCancel } from "../../Styles/buttons";
+import { formatPrice } from "../../Data/FoodData";
 import { QtyInput } from "./QtyInput";
-import { useQty } from "../Hooks/useQty";
-import { useToppings } from "../Hooks/useToppings";
-import { useChoice } from "../Hooks/useChoice";
+import { useQty } from "../../Hooks/useQty";
+import { useToppings } from "../../Hooks/useToppings";
+import { useChoice } from "../../Hooks/useChoice";
 import { Toppings } from "./Toppings";
 import { Choices } from "./Choices";
-import { PRICE_PER_TOPPING } from "../Data/FoodData";
+import { PRICE_PER_TOPPING } from "../../Data/FoodData";
 
 export const Dialog = styled.div`
   display: flex;
@@ -29,8 +29,8 @@ export const Dialog = styled.div`
   @media (max-width: 640px) {
     width: 100%;
     top: 60px;
-    max-height:initial;
-    height: calc(100vh );
+    max-height: initial;
+    height: calc(100vh);
   }
 `;
 
@@ -75,7 +75,6 @@ export function FoodDialogContainer({
   orders,
   setOrders
 }) {
-  FoodDialog.displayName = "Food-Dialog";
 
   const qty = useQty(activeItem && activeItem.qty);
   const toppings = useToppings(activeItem.toppings);

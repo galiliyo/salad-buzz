@@ -1,7 +1,7 @@
 import styled from "styled-components/macro"
 import React from "react"
-import { Title } from "../Styles/title"
-import { formatPrice } from "../Data/FoodData"
+import { Title } from "../../Styles/title"
+import { formatPrice } from "../../Data/FoodData"
 
 
 export const FoodGrid = styled.div`

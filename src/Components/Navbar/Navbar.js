@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components/macro";
 import { Dropdown } from "../UI/Dropdown";
-import { Title } from "../Styles/title";
-import { colors } from "../Styles/colors";
+import { Title } from "../../Styles/title";
+import { colors } from "../../Styles/colors";
 import { ShoppingCartContainer } from "./ShoppingCartContainer";
 import { SvgSingleNeutralCircle } from "../SvgIcons/SvgSingleNeutralCircle";
 

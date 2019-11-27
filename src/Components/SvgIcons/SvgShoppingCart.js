@@ -1,10 +1,13 @@
 import React from "react";
-import styled from "styled-components";
 
 export const SvgShoppingCart = props => (
-
-
-  <svg viewBox="0 0 24 24" width="32px" height="32px" {...props} cursor="pointer">
+  <svg
+    viewBox="0 0 24 24"
+    width="32px"
+    height="32px"
+    {...props}
+    cursor="pointer"
+  >
     <g className="shopping-cart_svg__nc-icon-wrapper">
       <path
         d="M3.5 17c-.827 0-1.5-.673-1.5-1.5S2.673 14 3.5 14h12a.5.5 0 000-1h-13c-.827 0-1.5-.673-1.5-1.5S1.673 10 2.5 10H16a.5.5 0 000-1H1.5C.673 9 0 8.327 0 
@@ -14,5 +17,3 @@ export const SvgShoppingCart = props => (
     </g>
   </svg>
 );
-
-

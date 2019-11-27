@@ -5,9 +5,6 @@ import { SvgShoppingCart } from "../SvgIcons/SvgShoppingCart";
 const ShoppingCartIcon = styled(SvgShoppingCart)`
   fill: white;
   margin-left: 12px;
-  &:active {
-    fill: blue;
-  }
 `;
 
 const orderAdded = keyframes`
@@ -80,7 +77,7 @@ export function ShoppingCartContainer({
           <Number>{noOfOrders}</Number>
         </Badge>
       )}
-      <ShoppingCartIcon active={activeItem} />
+      <ShoppingCartIcon />
     </CartContainer>
   );
 }

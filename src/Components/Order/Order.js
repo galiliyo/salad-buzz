@@ -4,7 +4,7 @@ import { colors } from "../../Styles/colors";
 import { BtnMain } from "../../Styles/buttons";
 import { formatPrice } from "../../Data/FoodData";
 import { getPrice } from "../FoodDialog/FoodDialog";
-import { SvgClose } from "../../SvgIcons/SvgClose";
+import { SvgClose } from "../SvgIcons/SvgClose";
 const database = window.firebase.database();
 
 const OrderStyledContainer = styled.section`
@@ -110,9 +110,9 @@ function sendOrder(orders, { email, displayName }) {
     }, {});
   });
 
-  newOrderRef
-    .set({ order: newOrders, email, displayName })
-    .then(() => console.log("successfully set data"));
+  newOrderRef.set({ order: newOrders, email, displayName }).then(() => {
+    console.log("successfully set data");
+  });
 }
 
 export function Order({
@@ -180,9 +180,7 @@ export function Order({
             disabled={!orders.length}
             onClick={() => {
               if (loggedIn) {
-                console.log('complete');
-                // sendOrder(orders, loggedIn);
-                
+                let x = sendOrder(orders, loggedIn);
                 setOrders([]);
                 toggleOrderCompleteDialog();
               } else {

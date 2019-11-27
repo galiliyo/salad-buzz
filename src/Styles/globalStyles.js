@@ -8,7 +8,17 @@ export const GlobalStyle = createGlobalStyle`
     margin:0;
     background: #edffea;
   }
- *{ box-sizing: border-box;}
+
+  body{
+    overflow-y: auto
+  }
+
+  div,
+  section,
+  header,
+  footer { 
+    box-sizing: border-box;
+  }
 
   h1,h2,h3,h4,h5 {
     font-family: 'Patua One', cursive;

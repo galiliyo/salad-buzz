@@ -1,12 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import {DialogShadow} from "../UI/DialogShadow"
+// import { DialogShadow } from "../UI/DialogShadow";
+import FadeIn from "../../Animations/FadeIn";
 import { Dialog, DialogContent } from "../FoodDialog/FoodDialog";
-import { BtnMain } from "../Styles/buttons";
+import { BtnMain } from "../../Styles/buttons";
 
 const OrderCompleteDialogContent = styled(DialogContent)`
+  position: absolute;
   width: 300px;
   min-height: 40px;
+  z-index: 150;
 `;
 
 const Footer = styled.div`
@@ -19,11 +22,10 @@ const Footer = styled.div`
 export function OrderCompleteDialog({ toggleOrderCompleteDialog, setOrders }) {
   function completeOrder() {
     toggleOrderCompleteDialog();
-    setOrders([]);
+    
   }
   return (
-    <>
-      <DialogShadow />
+    <FadeIn>
       <Dialog>
         <OrderCompleteDialogContent>
           <h3>Your order is on the way</h3>
@@ -35,6 +37,6 @@ export function OrderCompleteDialog({ toggleOrderCompleteDialog, setOrders }) {
           </BtnMain>
         </Footer>
       </Dialog>
-    </>
+    </FadeIn>
   );
 }
