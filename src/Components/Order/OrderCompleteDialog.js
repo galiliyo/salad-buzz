@@ -1,7 +1,6 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 // import { DialogShadow } from "../UI/DialogShadow";
-import FadeIn from "../../Animations/FadeIn";
 import { Dialog, DialogContent } from "../FoodDialog/FoodDialog";
 import { BtnMain } from "../../Styles/buttons";
 
@@ -22,21 +21,19 @@ const Footer = styled.div`
 export function OrderCompleteDialog({ toggleOrderCompleteDialog, setOrders }) {
   function completeOrder() {
     toggleOrderCompleteDialog();
-    
   }
+
   return (
-    <FadeIn>
-      <Dialog>
-        <OrderCompleteDialogContent>
-          <h3>Your order is on the way</h3>
-          <p>Thanks for choosing Salad-Buzz</p>
-        </OrderCompleteDialogContent>
-        <Footer>
-          <BtnMain width="50" onClick={completeOrder}>
-            OK
-          </BtnMain>
-        </Footer>
-      </Dialog>
-    </FadeIn>
+    <Dialog>
+      <OrderCompleteDialogContent>
+        <h3>Your order is on the way</h3>
+        <p>Thanks for choosing Salad-Buzz</p>
+      </OrderCompleteDialogContent>
+      <Footer>
+        <BtnMain width="50" onClick={completeOrder}>
+          OK
+        </BtnMain>
+      </Footer>
+    </Dialog>
   );
 }

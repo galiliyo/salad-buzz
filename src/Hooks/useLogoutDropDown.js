@@ -16,7 +16,7 @@ export function useLogoutDropDown() {
   }, [open]);
 
   const handleClickOutside = e => {
-    console.log("clicking anywhere", e.target.innerHTML);
+   console.log("clicking anywhere", e.target.innerHTML);
 
     if (e.target.innerHTML !== "Logout") setOpen(false);
     return

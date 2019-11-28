@@ -144,7 +144,6 @@ export function Order({
         onClick={() => setOrderVisible(!orderVisible)}
       >
         <OrderHeader>
-          {" "}
           <h2>Your Order</h2> {isSmallScreen && <CloseIcon />}
         </OrderHeader>
         <OrderContent>

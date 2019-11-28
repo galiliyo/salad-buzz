@@ -18,7 +18,6 @@ import { useSmallScreen } from "./Hooks/useSmallScreen";
 import { useLogoutDropDown } from "./Hooks/useLogoutDropDown";
 import { useOrderCompleteDialog } from "./Hooks/useOrderCompleteDialog";
 import { useDialogShadow } from "./Hooks/useDialogShadow";
-import FadeIn from "./Animations/FadeIn";
 
 const TestModal = styled.div`
   padding: 20px;
@@ -40,12 +39,12 @@ function App() {
   const smallScreen = useSmallScreen();
   const logoutDropDown = useLogoutDropDown();
   const orderVisible = useOrderVisible();
-  const dialogShadow = useDialogShadow({ ...activeItem, ...orderVisible });
+  const dialogShadow = useDialogShadow({ ...activeItem, ...orderVisible, ...orderCompleteDialog });
 
   useTitle({ ...activeItem }, { ...orders });
 
   function closeAll() {
-    console.log("close");
+    OrderCompleteDialog("close");
     orderVisible.setOrderVisible(false);
     activeItem.setActiveItem(null);
   }
@@ -55,10 +54,7 @@ function App() {
       <GlobalStyle />
 
       {dialogShadow.dialogShadow && <DialogShadow onClick={closeAll} />}
-      {orderCompleteDialog.orderDialogVisible && (
-        <OrderCompleteDialog {...orderCompleteDialog} {...orders} />
-      )}
-      <FoodDialog {...activeItem} {...orders} {...dialogShadow}></FoodDialog>
+
       <Navbar
         {...auth}
         {...smallScreen}
@@ -79,6 +75,10 @@ function App() {
       />
       <Banner />
       <Menu {...activeItem} {...orderVisible} />
+      <FoodDialog {...activeItem} {...orders} {...dialogShadow} />
+      {orderCompleteDialog.orderDialogVisible && (
+        <OrderCompleteDialog {...orderCompleteDialog} {...orders} />
+      )}
     </>
   );
 }

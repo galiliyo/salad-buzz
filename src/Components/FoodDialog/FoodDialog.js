@@ -99,7 +99,6 @@ export function FoodDialogContainer({
   function editOrder() {
     const newOrders = [...orders];
     newOrders[activeItem.idx] = newOrder;
-    console.log("newOrders, activeItem.idx", newOrders, activeItem.idx);
     setOrders(newOrders);
     closeDialog();
   }
