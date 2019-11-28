@@ -8,6 +8,7 @@ import { useToppings } from "../../Hooks/useToppings";
 import { useChoice } from "../../Hooks/useChoice";
 import { Toppings } from "./Toppings";
 import { Choices } from "./Choices";
+import { Fade } from "Animations/Fade";
 import { PRICE_PER_TOPPING } from "../../Data/FoodData";
 
 export const Dialog = styled.div`
@@ -70,12 +71,12 @@ function hasToppings({ section }) {
 }
 
 export function FoodDialogContainer({
+  foodDialogVisible,
   activeItem,
   setActiveItem,
   orders,
   setOrders
 }) {
-
   const qty = useQty(activeItem && activeItem.qty);
   const toppings = useToppings(activeItem.toppings);
   const choiceRadio = useChoice();
@@ -104,7 +105,7 @@ export function FoodDialogContainer({
   }
 
   return (
-    <>
+    <Fade show={foodDialogVisible}>
       <Dialog>
         <DialogBanner img={activeItem.img} />
         <DialogContent>
@@ -136,6 +137,6 @@ export function FoodDialogContainer({
           </BtnMain>
         </Footer>
       </Dialog>
-    </>
+    </Fade>
   );
 }

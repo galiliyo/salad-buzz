@@ -5,7 +5,6 @@ import { Banner } from "./Components/Banner/Banner";
 import { FoodDialog } from "./Components/FoodDialog/FoodDialog";
 import { DialogShadow } from "./Components/UI/DialogShadow";
 import { Menu } from "./Components/Menu/Menu";
-import { Modal } from "./Components/UI/Modal";
 import { Order } from "./Components/Order/Order";
 import { useActiveItem } from "./Hooks/useActiveItem";
 import { OrderCompleteDialog } from "./Components/Order/OrderCompleteDialog";
@@ -39,7 +38,11 @@ function App() {
   const smallScreen = useSmallScreen();
   const logoutDropDown = useLogoutDropDown();
   const orderVisible = useOrderVisible();
-  const dialogShadow = useDialogShadow({ ...activeItem, ...orderVisible, ...orderCompleteDialog });
+  const dialogShadow = useDialogShadow({
+    ...activeItem,
+    ...orderVisible,
+    ...orderCompleteDialog
+  });
 
   useTitle({ ...activeItem }, { ...orders });
 
@@ -53,8 +56,7 @@ function App() {
     <>
       <GlobalStyle />
 
-      {dialogShadow.dialogShadow && <DialogShadow onClick={closeAll} />}
-
+      <DialogShadow show={dialogShadow.dialogShadow} onClick={closeAll} />
       <Navbar
         {...auth}
         {...smallScreen}
@@ -63,7 +65,6 @@ function App() {
         {...orderVisible}
         {...activeItem}
       />
-
       <Order
         {...orders}
         {...activeItem}
@@ -71,14 +72,12 @@ function App() {
         {...auth}
         {...orderCompleteDialog}
         {...orderVisible}
-        {...dialogShadow}
       />
       <Banner />
       <Menu {...activeItem} {...orderVisible} />
-      <FoodDialog {...activeItem} {...orders} {...dialogShadow} />
-      {orderCompleteDialog.orderDialogVisible && (
-        <OrderCompleteDialog {...orderCompleteDialog} {...orders} />
-      )}
+      <FoodDialog {...activeItem} {...orders} />
+
+      <OrderCompleteDialog {...orderCompleteDialog} {...orders} />
     </>
   );
 }

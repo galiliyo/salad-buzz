@@ -1,11 +1,21 @@
+import React from 'react';
 import styled from "styled-components/macro";
+import { Fade } from "Animations/Fade";
 
-export const DialogShadow = styled.div`
+const ShadowDiv = styled.div`
   position: fixed;
   height: 100%;
   width: 100%;
   top: 0;
   background-color: black;
   opacity: 0.6;
-  z-index: 20;
+
 `;
+
+export const DialogShadow = props => {
+  return (
+    <Fade show={props.show}>
+      <ShadowDiv />
+    </Fade>
+  );
+};
