@@ -57,8 +57,13 @@ export const Footer = styled.div`
 `;
 
 export function FoodDialog(props) {
-  if (!props.activeItem) return null;
-  else return <FoodDialogContainer {...props} />;
+  return (
+    <Fade
+      show={props.foodDialogVisible}
+    >
+      {props.activeItem && <FoodDialogContainer {...props} />}
+    </Fade>
+  );
 }
 
 export function getPrice(order) {
@@ -72,6 +77,7 @@ function hasToppings({ section }) {
 
 export function FoodDialogContainer({
   foodDialogVisible,
+  setFoodDialogVisible,
   activeItem,
   setActiveItem,
   orders,
@@ -82,7 +88,10 @@ export function FoodDialogContainer({
   const choiceRadio = useChoice();
   const isEditing = activeItem.idx > -1;
   function closeDialog() {
-    setActiveItem(false);
+    setFoodDialogVisible(false);
+    setTimeout(() => {
+      setActiveItem(null);
+    }, 500);
   }
 
   const newOrder = {
@@ -105,38 +114,36 @@ export function FoodDialogContainer({
   }
 
   return (
-    <Fade show={foodDialogVisible}>
-      <Dialog>
-        <DialogBanner img={activeItem.img} />
-        <DialogContent>
-          <h2>{activeItem.name}</h2>
-          <QtyInput qty={qty} />
-          {hasToppings(activeItem) && (
-            <>
-              <h4>Choose Toppings</h4>
-              <Toppings {...toppings} />
-            </>
-          )}
-          {activeItem.choices && (
-            <Choices activeItem={activeItem} choiceRadio={choiceRadio} />
-          )}
-        </DialogContent>
-        <img src="/img/leaf-divider.png" />
+    <Dialog>
+      <DialogBanner img={activeItem.img} />
+      <DialogContent>
+        <h2>{activeItem.name}</h2>
+        <QtyInput qty={qty} />
+        {hasToppings(activeItem) && (
+          <>
+            <h4>Choose Toppings</h4>
+            <Toppings {...toppings} />
+          </>
+        )}
+        {activeItem.choices && (
+          <Choices activeItem={activeItem} choiceRadio={choiceRadio} />
+        )}
+      </DialogContent>
+      <img src="/img/leaf-divider.png" />
 
-        <Footer>
-          <BtnCancel width="45%" onClick={closeDialog}>
-            Cancel
-          </BtnCancel>
-          <BtnMain
-            width="45%"
-            onClick={isEditing ? editOrder : addToOrder}
-            disabled={activeItem.choices && !newOrder.selection}
-          >
-            {isEditing ? "Edit Order" : "Add to Order"} :{" "}
-            {formatPrice(getPrice(newOrder))}
-          </BtnMain>
-        </Footer>
-      </Dialog>
-    </Fade>
+      <Footer>
+        <BtnCancel width="45%" onClick={closeDialog}>
+          Cancel
+        </BtnCancel>
+        <BtnMain
+          width="45%"
+          onClick={isEditing ? editOrder : addToOrder}
+          disabled={activeItem.choices && !newOrder.selection}
+        >
+          {isEditing ? "Edit Order" : "Add to Order"} :{" "}
+          {formatPrice(getPrice(newOrder))}
+        </BtnMain>
+      </Footer>
+    </Dialog>
   );
 }

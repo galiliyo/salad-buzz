@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
 
 export function useDialogShadow({
-  activeItem,
+  foodDialogVisible,
   orderVisible,
   orderDialogVisible
 }) {
   const [dialogShadow, setDialogShadow] = useState(false);
 
   useEffect(() => {
-    console.log('orderDialogVisible',orderDialogVisible);
-
-    setDialogShadow(activeItem || orderVisible || orderDialogVisible);
+    setDialogShadow(foodDialogVisible || orderVisible || orderDialogVisible);
   });
 
   return { dialogShadow, setDialogShadow };

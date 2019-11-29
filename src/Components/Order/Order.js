@@ -124,7 +124,8 @@ export function Order({
   toggleOrderCompleteDialog,
   orderVisible,
   setOrderVisible,
-  isSmallScreen
+  isSmallScreen,
+  setFoodDialogVisible
 }) {
   const subTotal = orders.reduce((total, currOrder) => {
     return getPrice(currOrder) + total;
@@ -136,7 +137,16 @@ export function Order({
     newOrders.splice(idx, 1);
     setOrders(newOrders);
   }
-
+  function editItem(order, idx) {
+    setTimeout(
+      () => {
+        setActiveItem({ ...order, idx });
+        setFoodDialogVisible(true);
+      },
+      350,
+      (order, idx)
+    );
+  }
   return (
     <OrderStyledContainer>
       <OrderStyled
@@ -149,10 +159,7 @@ export function Order({
         <OrderContent>
           {orders.map((order, idx) => {
             return (
-              <OrderItem
-                key={idx}
-                onClick={() => setActiveItem({ ...order, idx })}
-              >
+              <OrderItem key={idx} onClick={() => editItem(order, idx)}>
                 <div>{order.qty}</div>
                 <div>{order.name}</div>
                 <div

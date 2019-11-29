@@ -1,0 +1,89 @@
+[debug] [2019-11-28T19:46:48.469Z] ----------------------------------------------------------------------
+[debug] [2019-11-28T19:46:48.472Z] Command:       D:\Programs\Node\node.exe C:\Users\yonga\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-11-28T19:46:48.472Z] CLI Version:   7.8.0
+[debug] [2019-11-28T19:46:48.472Z] Platform:      win32
+[debug] [2019-11-28T19:46:48.472Z] Node Version:  v10.16.3
+[debug] [2019-11-28T19:46:48.487Z] Time:          Thu Nov 28 2019 21:46:48 GMT+0200 (Israel Standard Time)
+[debug] [2019-11-28T19:46:48.487Z] ----------------------------------------------------------------------
+[debug] [2019-11-28T19:46:48.487Z] 
+[debug] [2019-11-28T19:46:48.529Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-11-28T19:46:48.529Z] > authorizing via signed-in user
+[debug] [2019-11-28T19:46:48.530Z] [iam] checking project saladbar-b7e44 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2019-11-28T19:46:48.531Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-11-28T19:46:48.531Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-11-28T19:46:49.001Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-28T19:46:49.016Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/saladbar-b7e44:testIamPermissions  
+
+[debug] [2019-11-28T19:46:50.171Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-28T19:46:50.173Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/saladbar-b7e44  
+ 
+[debug] [2019-11-28T19:46:50.736Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'saladbar-b7e44'...
+[info] 
+[info] i  deploying database, functions, hosting
+[info] i  database: checking rules syntax...
+[debug] [2019-11-28T19:46:55.171Z] >>> HTTP REQUEST PUT https://saladbar-b7e44.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
+  "rules": {
+    ".write": true
+  }
+}
+
+[debug] [2019-11-28T19:46:56.087Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database saladbar-b7e44 is valid
+[debug] [2019-11-28T19:46:56.090Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase serve --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "dependencies": {
+    "firebase-admin": "^8.6.0",
+    "firebase-functions": "^3.3.0",
+    "nodemailer": "^6.3.1",
+    "nodemailer-html-to-text": "^3.1.0"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.1.6"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2019-11-28T19:46:56.097Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/saladbar-b7e44/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2019-11-28T19:46:56.098Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/saladbar-b7e44/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2019-11-28T19:46:57.329Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-28T19:46:57.427Z] <<< HTTP RESPONSE 200
+[info] +  functions: all necessary APIs are enabled
+[debug] [2019-11-28T19:46:57.428Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/saladbar-b7e44/adminSdkConfig  
+ 
+[debug] [2019-11-28T19:46:57.821Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-28T19:46:57.822Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/saladbar-b7e44/versions  
+
+[debug] [2019-11-28T19:47:00.330Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2019-11-28T19:47:00.333Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/saladbar-b7e44/configs  
+ 
+[debug] [2019-11-28T19:47:01.156Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (26.46 KB) for uploading
+[debug] [2019-11-28T19:47:02.506Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/saladbar-b7e44/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2019-11-28T19:47:03.579Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-28T19:47:03.581Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-5d45f923-1872-43a8-8a4a-bf86e6cc1e72/234a057f-4019-4d47-9166-b4f667cb1b50.zip?GoogleAccessId=service-375486901357@gcf-admin-robot.iam.gserviceaccount.com&Expires=1574972223&Signature=N%2BB8eIM1dwcnStjUNOzV1yZd3nsFdkaTobVV9GDgpwVrdAiFpFNgPO05aZlxnavrOZWjFVJV46yV9%2F9JdDYUKlVOhO1LIoTpGsnMnWzizpUPuwZ0cBh2mGlQNe0Fz%2BS5v0fpid8zB%2BZsYoOOF37qUY%2FVKSyRF4%2BKR%2F6J1cziTaTySk3QnuXKZdWoq1rGhDpPwsEABY2FGJaPkCVqdVGIG1lliJr2XXDArJAEWTBn7ngeqymzKdJus5e4C1FyGTwTxDCmW8aTWRlUB8A9CJJa9VaFb0ZMb%2BoTWSmzOp9Q39WyRJEEUke20iop%2FoPLLIAV0R5X32iouS%2BXmfWl47ayOg%3D%3D  
+ <request body omitted>
+[warn] !  functions: Upload Error: Server Error. connect ETIMEDOUT 216.58.206.80:443
+[debug] [2019-11-28T19:47:24.954Z] Error: connect ETIMEDOUT 216.58.206.80:443
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1106:14)
+[error] 
+[error] Error: Server Error. connect ETIMEDOUT 216.58.206.80:443
