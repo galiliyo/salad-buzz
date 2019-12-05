@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const BREAK_POINT = 1354;
+const BREAK_POINT = 640;
 
 export function useSmallScreen() {
   const [isSmallScreen, setSmallScreen] = useState(

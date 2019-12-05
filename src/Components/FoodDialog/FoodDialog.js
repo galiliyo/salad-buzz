@@ -10,6 +10,7 @@ import { Toppings } from "./Toppings";
 import { Choices } from "./Choices";
 import { Fade } from "Animations/Fade";
 import { PRICE_PER_TOPPING } from "../../Data/FoodData";
+import { Spacer } from "../UI/Spacer";
 
 export const Dialog = styled.div`
   display: flex;
@@ -20,7 +21,7 @@ export const Dialog = styled.div`
   max-height: calc(100vh - 130px);
   background: white;
   position: fixed;
-  padding: 24px 24px 0 24px;
+  padding: 24px;
   box-shadow: 12px 12px 8px 4px rgba(0, 0, 0, 0.9);
   border-radius: 2px;
   z-index: 30;
@@ -30,19 +31,23 @@ export const Dialog = styled.div`
   @media (max-width: 640px) {
     width: 100vw;
     top: 60px;
-    left:0;
+    left: 0;
     transform: translateX(0);
     max-height: initial;
-    height: calc(100vh);
+    height: calc(100vh - 60px);
   }
 `;
 
 const DialogBanner = styled.div`
-  min-height: 200px;
+  flex: 4 4 200px;
   ${({ img }) => (img ? `background-image:url(${img});` : `display:none`)};
   background-size: cover;
   background-position: center;
   margin-bottom: 12px;
+  clip-path: polygon(0 0,100% 0,100% 80%,0 100%);
+  @media (max-width: 640px) {
+    display: none;
+  }
 `;
 
 export const DialogContent = styled.div`
@@ -52,6 +57,7 @@ export const DialogContent = styled.div`
 export const Footer = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
   padding: 0 12px;
@@ -76,12 +82,12 @@ function hasToppings({ section }) {
 }
 
 export function FoodDialogContainer({
-  foodDialogVisible,
   setFoodDialogVisible,
   activeItem,
   setActiveItem,
   orders,
-  setOrders
+  setOrders,
+  isSmallScreen
 }) {
   const qty = useQty(activeItem && activeItem.qty);
   const toppings = useToppings(activeItem.toppings);
@@ -129,14 +135,14 @@ export function FoodDialogContainer({
           <Choices activeItem={activeItem} choiceRadio={choiceRadio} />
         )}
       </DialogContent>
+      <Spacer />
       <img src="/img/leaf-divider.png" />
-
       <Footer>
-        <BtnCancel width="45%" onClick={closeDialog}>
+        <BtnCancel width={isSmallScreen ? "100%" : "45%"} onClick={closeDialog}>
           Cancel
         </BtnCancel>
         <BtnMain
-          width="45%"
+          width={isSmallScreen ? "100%" : "45%"}
           onClick={isEditing ? editOrder : addToOrder}
           disabled={activeItem.choices && !newOrder.selection}
         >

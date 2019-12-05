@@ -7,8 +7,6 @@ import { getPrice } from "../FoodDialog/FoodDialog";
 import { SvgClose } from "../SvgIcons/SvgClose";
 const database = window.firebase.database();
 
-
-
 const OrderStyled = styled.div`
   display: flex;
   flex-direction: column;
@@ -27,13 +25,13 @@ const OrderStyled = styled.div`
   @media (max-width: 1354px) {
     width: 90%;
     max-width: 360px;
+    position: fixed;
     right: 0;
     transform: translateX(${props => (props.visible ? `-0 ` : "100%")});
   }
   @media (max-width: 640px) {
     transform: translateX(${props => (props.visible ? `-0 ` : "100%")});
     max-width: initial;
-    position: relative;
     width: 100%;
     top: 60px;
   }
@@ -84,6 +82,9 @@ const BtnOrder = styled(BtnMain)`
 const CloseIcon = styled(SvgClose)`
   fill: ${colors.darkText};
   display: inline-block;
+  &hover {
+    fill: ${colors.hoverGreen};
+  }
 `;
 
 function sendOrder(orders, { email, displayName }) {
@@ -145,56 +146,55 @@ export function Order({
     );
   }
   return (
-   
-      <OrderStyled
-        visible={orderVisible}
-        onClick={() => setOrderVisible(!orderVisible)}
-      >
-        <OrderHeader>
-          <h2>Your Order</h2> {isSmallScreen && <CloseIcon />}
-        </OrderHeader>
-        <OrderContent>
-          {orders.map((order, idx) => {
-            return (
-              <OrderItem key={idx} onClick={() => editItem(order, idx)}>
-                <div>{order.qty}</div>
-                <div>{order.name}</div>
-                <div
-                  style={{ cursor: "pointer" }}
-                  onClick={idx => {
-                    deleteItem(idx);
-                  }}
-                >
-                  🗑️
-                </div>
-                <div>{formatPrice(getPrice(order))}</div>
-              </OrderItem>
-            );
-          })}
-        </OrderContent>
-        <OrderFooter>
-          {orders.length > 0 && (
-            <Subtotal>
-              <h3>Total: </h3>
-              <h3>{formatPrice(subTotal)}</h3>
-            </Subtotal>
-          )}
-          <BtnOrder
-            disabled={!orders.length}
-            onClick={() => {
-              if (loggedIn) {
-                let x = sendOrder(orders, loggedIn);
-                setOrders([]);
-                toggleOrderCompleteDialog();
-              } else {
-                login();
-              }
-            }}
-          >
-            Order
-          </BtnOrder>
-        </OrderFooter>
-      </OrderStyled>
-
+    <OrderStyled visible={orderVisible}>
+      <OrderHeader>
+        <h2>Your Order</h2>{" "}
+        {window.innerWidth < 1354 && (
+          <CloseIcon onClick={() => setOrderVisible(!orderVisible)} />
+        )}
+      </OrderHeader>
+      <OrderContent>
+        {orders.map((order, idx) => {
+          return (
+            <OrderItem key={idx} onClick={() => editItem(order, idx)}>
+              <div>{order.qty}</div>
+              <div>{order.name}</div>
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={idx => {
+                  deleteItem(idx);
+                }}
+              >
+                🗑️
+              </div>
+              <div>{formatPrice(getPrice(order))}</div>
+            </OrderItem>
+          );
+        })}
+      </OrderContent>
+      <OrderFooter>
+        {orders.length > 0 && (
+          <Subtotal>
+            <h3>Total: </h3>
+            <h3>{formatPrice(subTotal)}</h3>
+          </Subtotal>
+        )}
+        <BtnOrder
+          disabled={!orders.length}
+          onClick={() => {
+            if (loggedIn) {
+              sendOrder(orders, loggedIn);
+              setOrderVisible(!orderVisible);
+              setOrders([]);
+              toggleOrderCompleteDialog();
+            } else {
+              login();
+            }
+          }}
+        >
+          Order
+        </BtnOrder>
+      </OrderFooter>
+    </OrderStyled>
   );
 }

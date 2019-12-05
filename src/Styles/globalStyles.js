@@ -16,19 +16,20 @@ export const GlobalStyle = createGlobalStyle`
     left:0
   }
 
-#root{
-  overflow-x:hidden;
-  width:100vw;
-  left:0
-  
-}
+  #root{
+    overflow-x:hidden;
+    width:100vw;
+    left:0
+    
+  }
 
   div,
   section,
   header,
-  footer { 
-    box-sizing: border-box;
-  }
+  footer,
+  nav { 
+     box-sizing: border-box;
+    }
 
   h1,h2,h3,h4,h5 {
     font-family: 'Patua One', cursive;

@@ -51,15 +51,11 @@ function App() {
     orderVisible.setOrderVisible(false);
     activeItem.setActiveItem(null);
   }
-  const AppContainer = styled.div`
-   
-
-  `;
+  const AppContainer = styled.div``;
 
   return (
     <>
       <GlobalStyle />
-
       <DialogShadow show={dialogShadow.dialogShadow} onClick={closeAll} />
       <Navbar
         {...auth}
@@ -79,7 +75,7 @@ function App() {
       />
       <Banner />
       <Menu {...activeItem} {...orderVisible} />
-      <FoodDialog {...activeItem} {...orders} />
+      <FoodDialog {...activeItem} {...orders} {...smallScreen} />
 
       <OrderCompleteDialog {...orderCompleteDialog} {...orders} />
     </>

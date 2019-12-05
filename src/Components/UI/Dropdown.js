@@ -12,6 +12,10 @@ const Container = styled.div`
   width: 100px;
   text-align: center;
   box-shadow: 4px 3px 8px 0px rgba(0, 0, 0, 0.55);
+  @media (max-width: 768px) {
+    left:initial;
+    right: 0;
+  }
 `;
 
 const DropDownItem = styled.a`

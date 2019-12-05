@@ -5,9 +5,10 @@ const ToppingGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
-  margin-bottom: 12px;
+  margin: 10px 0 8px 0;
   @media (max-width: 640px) {
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 32px;
   }
 `;
 
