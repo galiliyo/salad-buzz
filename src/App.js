@@ -51,6 +51,10 @@ function App() {
     orderVisible.setOrderVisible(false);
     activeItem.setActiveItem(null);
   }
+  const AppContainer = styled.div`
+   
+
+  `;
 
   return (
     <>

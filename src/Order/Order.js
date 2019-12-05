@@ -7,10 +7,10 @@ import { getPrice } from "../FoodDialog/FoodDialog";
 import { SvgClose } from "../../SvgIcons/SvgClose";
 const database = window.firebase.database();
 
-const OrderStyledContainer = styled.section`
-  /* overflow: hidden;
-  width: 100vw; */
-`;
+// const OrderStyledContainer = styled.section`
+//   /* overflow: hidden;
+//   width: 100vw; */
+// `;
 
 const OrderStyled = styled.div`
   display: flex;
@@ -36,7 +36,7 @@ const OrderStyled = styled.div`
   @media (max-width: 640px) {
     transform: translateX(${props => (props.visible ? `-0 ` : "100%")});
     max-width: initial;
-    position: absolute;
+    position:static;
     width: 100%;
     top: 60px;
   }
@@ -138,62 +138,60 @@ export function Order({
   }
 
   return (
-    <OrderStyledContainer>
-      <OrderStyled
-        visible={orderVisible}
-        onClick={() => setOrderVisible(!orderVisible)}
-      >
-        <OrderHeader>
-          {" "}
-          <h2>Your Order</h2> {isSmallScreen && <CloseIcon />}
-        </OrderHeader>
-        <OrderContent>
-          {orders.map((order, idx) => {
-            return (
-              <OrderItem
-                key={idx}
-                onClick={() => setActiveItem({ ...order, idx })}
+    <OrderStyled
+      visible={orderVisible}
+      onClick={() => setOrderVisible(!orderVisible)}
+    >
+      <OrderHeader>
+        {" "}
+        <h2>Your Order</h2> {isSmallScreen && <CloseIcon />}
+      </OrderHeader>
+      <OrderContent>
+        {orders.map((order, idx) => {
+          return (
+            <OrderItem
+              key={idx}
+              onClick={() => setActiveItem({ ...order, idx })}
+            >
+              <div>{order.qty}</div>
+              <div>{order.name}</div>
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={idx => {
+                  deleteItem(idx);
+                }}
               >
-                <div>{order.qty}</div>
-                <div>{order.name}</div>
-                <div
-                  style={{ cursor: "pointer" }}
-                  onClick={idx => {
-                    deleteItem(idx);
-                  }}
-                >
-                  🗑️
-                </div>
-                <div>{formatPrice(getPrice(order))}</div>
-              </OrderItem>
-            );
-          })}
-        </OrderContent>
-        <OrderFooter>
-          {orders.length > 0 && (
-            <Subtotal>
-              <h3>Total: </h3>
-              <h3>{formatPrice(subTotal)}</h3>
-            </Subtotal>
-          )}
-          <BtnOrder
-            disabled={!orders.length}
-            onClick={() => {
-              if (loggedIn) {
-                console.log('complete');
-                // sendOrder(orders, loggedIn);
-                
-                setOrders([]);
-                toggleOrderCompleteDialog();
-              } else {
-                login();
-              }
-            }}
-          >
-            Order
-          </BtnOrder>
-        </OrderFooter>
-      </OrderStyled>
-    </OrderStyledContainer>
+                🗑️
+              </div>
+              <div>{formatPrice(getPrice(order))}</div>
+            </OrderItem>
+          );
+        })}
+      </OrderContent>
+      <OrderFooter>
+        {orders.length > 0 && (
+          <Subtotal>
+            <h3>Total: </h3>
+            <h3>{formatPrice(subTotal)}</h3>
+          </Subtotal>
+        )}
+        <BtnOrder
+          disabled={!orders.length}
+          onClick={() => {
+            if (loggedIn) {
+              console.log("complete");
+              // sendOrder(orders, loggedIn);
+
+              setOrders([]);
+              toggleOrderCompleteDialog();
+            } else {
+              login();
+            }
+          }}
+        >
+          Order
+        </BtnOrder>
+      </OrderFooter>
+    </OrderStyled>
   );
 }

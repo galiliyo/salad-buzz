@@ -7,10 +7,7 @@ import { getPrice } from "../FoodDialog/FoodDialog";
 import { SvgClose } from "../SvgIcons/SvgClose";
 const database = window.firebase.database();
 
-const OrderStyledContainer = styled.section`
-  /* overflow: hidden;
-  width: 100vw; */
-`;
+
 
 const OrderStyled = styled.div`
   display: flex;
@@ -36,7 +33,7 @@ const OrderStyled = styled.div`
   @media (max-width: 640px) {
     transform: translateX(${props => (props.visible ? `-0 ` : "100%")});
     max-width: initial;
-    position: absolute;
+    position: relative;
     width: 100%;
     top: 60px;
   }
@@ -148,7 +145,7 @@ export function Order({
     );
   }
   return (
-    <OrderStyledContainer>
+   
       <OrderStyled
         visible={orderVisible}
         onClick={() => setOrderVisible(!orderVisible)}
@@ -198,6 +195,6 @@ export function Order({
           </BtnOrder>
         </OrderFooter>
       </OrderStyled>
-    </OrderStyledContainer>
+
   );
 }

@@ -6,7 +6,7 @@ import { colors } from "../../Styles/colors";
 import { ShoppingCartContainer } from "./ShoppingCartContainer";
 import { SvgSingleNeutralCircle } from "../SvgIcons/SvgSingleNeutralCircle";
 
-const NavbarStyled = styled.div`
+const NavbarStyled = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;

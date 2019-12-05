@@ -28,8 +28,10 @@ export const Dialog = styled.div`
   transform: translateX(-50%);
   top: 80px;
   @media (max-width: 640px) {
-    width: 100%;
+    width: 100vw;
     top: 60px;
+    left:0;
+    transform: translateX(0);
     max-height: initial;
     height: calc(100vh);
   }
@@ -58,9 +60,7 @@ export const Footer = styled.div`
 
 export function FoodDialog(props) {
   return (
-    <Fade
-      show={props.foodDialogVisible}
-    >
+    <Fade show={props.foodDialogVisible}>
       {props.activeItem && <FoodDialogContainer {...props} />}
     </Fade>
   );

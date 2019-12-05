@@ -10,8 +10,18 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body{
-    overflow-y: auto
+    overflow-y: auto;
+    overflow-x:hidden;
+    width:100vw;
+    left:0
   }
+
+#root{
+  overflow-x:hidden;
+  width:100vw;
+  left:0
+  
+}
 
   div,
   section,
