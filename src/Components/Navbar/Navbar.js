@@ -12,10 +12,13 @@ const NavbarStyled = styled.nav`
   align-items: center;
   top: 0;
   height: 60px;
-  padding: 0 40px 0 24px;
+  padding: 0 24px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   background-color: ${colors.saladGreen};
-  background-image: url("/img/mast-head.svg");
+  background-image: ${props =>
+    props.isSmallScreen
+      ? 'url("/img/mast-head-mobile.svg")'
+      : 'url("/img/mast-head.svg")'};
   background-repeat: no-repeat;
   position: fixed;
   width: calc(100vw);
@@ -82,16 +85,16 @@ export function Navbar({
   activeItem
 }) {
   let width = window.innerWidth;
-  // why does click not register  93
+  // why does click not register line 93
   return (
-    <NavbarStyled>
-      <Logo/>
+    <NavbarStyled isSmallScreen={isSmallScreen}>
+      <Logo />
       <UserStatus>
         {loggedIn !== "loading" ? (
           <>
             {loggedIn ? (
               <LoggedInContainer>
-                {window.innerWidth<1354 && (
+                {window.innerWidth < 1354 && (
                   <ShoppingCartContainer
                     onClick={() => console.log("click")}
                     orders={orders}
