@@ -3,7 +3,7 @@ import styled from "styled-components/macro";
 import { foods } from "../../Data/FoodData";
 import { Title } from "../../Styles/title.js";
 import { FoodCard, FoodGrid } from "./FoodGrid";
-import { LeafAnimation } from "../UI/LeafAnimation";
+// import { LeafAnimation } from "../UI/LeafAnimation";
 
 const MenuStyled = styled.div`
   max-width: 1200px;

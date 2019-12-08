@@ -50,7 +50,7 @@ export const FoodCard = ({ item, setActiveItem,setFoodDialogVisible }) => {
         setFoodDialogVisible(true);
       }}
     >
-      <img src={item.img} style={{ width: "100%" }} />
+      <img src={item.img} style={{ width: "100%" }} alt="menu item" />
       
       <CardTitle>{item.name} </CardTitle>
       <p>{item.desc} </p>

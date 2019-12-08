@@ -119,10 +119,9 @@ export function Order({
   setActiveItem,
   loggedIn,
   login,
-  toggleOrderCompleteDialog,
+  showOrderCompleteDialog,
   orderVisible,
   setOrderVisible,
-  isSmallScreen,
   setFoodDialogVisible
 }) {
   const subTotal = orders.reduce((total, currOrder) => {
@@ -136,12 +135,13 @@ export function Order({
     setOrders(newOrders);
   }
   function editItem(order, idx) {
+    setOrderVisible(false);
     setTimeout(
       () => {
         setActiveItem({ ...order, idx });
         setFoodDialogVisible(true);
       },
-      350,
+      0,
       (order, idx)
     );
   }
@@ -165,7 +165,7 @@ export function Order({
                   deleteItem(idx);
                 }}
               >
-                🗑️
+                <span role="img">🗑️</span>
               </div>
               <div>{formatPrice(getPrice(order))}</div>
             </OrderItem>
@@ -186,7 +186,7 @@ export function Order({
               sendOrder(orders, loggedIn);
               setOrderVisible(!orderVisible);
               setOrders([]);
-              toggleOrderCompleteDialog();
+              showOrderCompleteDialog();
             } else {
               login();
             }

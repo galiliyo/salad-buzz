@@ -84,7 +84,6 @@ export function Navbar({
   setOrderVisible,
   activeItem
 }) {
-  let width = window.innerWidth;
   // why does click not register line 93
   return (
     <NavbarStyled isSmallScreen={isSmallScreen}>

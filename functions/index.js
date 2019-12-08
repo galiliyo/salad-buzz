@@ -28,7 +28,8 @@ function sendOrderEmail(order) {
     html: `
     <table style="width:500px; margin auto" >
         <tr>
-            <th>Hi ${order.displayName}, here is you order confirmation</th>
+            <th>Hi </th>
+            <th>${order.displayName}, here is your order confirmation</th>
         </tr>
         ${order.order
           .map(

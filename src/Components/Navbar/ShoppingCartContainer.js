@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from 'react';
 import styled, { keyframes, css } from "styled-components/macro";
 import { SvgShoppingCart } from "../SvgIcons/SvgShoppingCart";
 
@@ -54,10 +54,7 @@ export function ShoppingCartContainer({
   activeItem
 }) {
   let noOfOrders = orders.length;
-  const subTotal = orders.reduce((total, currOrder) => {
-    return currOrder.price + total;
-  }, 0);
-
+ 
   // TODO animate on refresh
 
   function toggleOrderPanelVisibility() {

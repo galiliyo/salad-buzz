@@ -1,46 +1,38 @@
 import React from "react";
 import styled from "styled-components/macro";
-import {Fade} from "Animations/Fade"
-// import { DialogShadow } from "../UI/DialogShadow";
-import { Dialog, DialogContent } from "../FoodDialog/FoodDialog";
-import { BtnMain } from "../../Styles/buttons";
+import { Fade } from "Animations/Fade";
+import { colors } from "../../Styles/colors";
 
-const OrderCompleteDialogContent = styled(DialogContent)`
-  position: absolute;
-  width: 300px;
-  min-height: 40px;
+const OrderCompleteDialogContent = styled.div`
+  position: fixed;
+  width: 70%;
+  bottom: 80px;
+  left: 50%;
+  box-shadow: 1px 1px 6px rgba(0,0,0,0.3);
+  transform: translateX(-50%);
+  background: ${colors.veryGreen};
+
+  padding: 12px 24px;
+  min-width: 320px;
   z-index: 150;
 `;
 
-const Footer = styled.div`
-  display: flex;
-  padding: 12px 0;
-
-  justify-content: flex-end;
+const Message = styled.h5`
+  text-align: center;
+  color: white;
+  font-weight: normal;
 `;
 
 export function OrderCompleteDialog({
   orderDialogVisible,
-  toggleOrderCompleteDialog,
-  setOrders
 }) {
-  function completeOrder() {
-    toggleOrderCompleteDialog();
-  }
-
+ 
   return (
     <Fade show={orderDialogVisible}>
-      <Dialog>
-        <OrderCompleteDialogContent>
-          <h3>Your order is on the way</h3>
-          <p>Thanks for choosing Salad-Buzz</p>
-        </OrderCompleteDialogContent>
-        <Footer>
-          <BtnMain width="50" onClick={completeOrder}>
-            OK
-          </BtnMain>
-        </Footer>
-      </Dialog>
+      <OrderCompleteDialogContent>
+        <Message style={{}}>Your order is on the way</Message>
+      </OrderCompleteDialogContent>
     </Fade>
   );
 }
+// >

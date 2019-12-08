@@ -8,8 +8,8 @@ export function useDialogShadow({
   const [dialogShadow, setDialogShadow] = useState(false);
 
   useEffect(() => {
-    setDialogShadow(foodDialogVisible || orderVisible || orderDialogVisible);
-  });
+    setDialogShadow(foodDialogVisible || orderVisible);
+  }, [foodDialogVisible, orderVisible]);
 
   return { dialogShadow, setDialogShadow };
 }

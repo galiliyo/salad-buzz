@@ -62,6 +62,9 @@ export const Footer = styled.div`
   justify-content: space-evenly;
   padding: 0 12px;
   flex: 0 0 60px;
+  @media (max-width:640px){
+    flex-direction: column-reverse;
+  }
 `;
 
 export function FoodDialog(props) {
@@ -136,7 +139,7 @@ export function FoodDialogContainer({
         )}
       </DialogContent>
       <Spacer />
-      <img src="/img/leaf-divider.png" />
+      <img src="/img/leaf-divider.png" alt=''/>
       <Footer>
         <BtnCancel width={isSmallScreen ? "100%" : "45%"} onClick={closeDialog}>
           Cancel

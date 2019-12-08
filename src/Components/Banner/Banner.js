@@ -1,5 +1,4 @@
 import styled from "styled-components/macro";
-const width = window.innerWidth;
 export const Banner = styled.div`
   height: 30vw;
   min-height: 200px;

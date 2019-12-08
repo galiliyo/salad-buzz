@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from 'react';
 import { GlobalStyle } from "./Styles/globalStyles";
 import { Navbar } from "./Components/Navbar/Navbar";
 import { Banner } from "./Components/Banner/Banner";
@@ -17,17 +17,6 @@ import { useSmallScreen } from "./Hooks/useSmallScreen";
 import { useLogoutDropDown } from "./Hooks/useLogoutDropDown";
 import { useOrderCompleteDialog } from "./Hooks/useOrderCompleteDialog";
 import { useDialogShadow } from "./Hooks/useDialogShadow";
-
-const TestModal = styled.div`
-  padding: 20px;
-  height: 50px;
-  width: 200px;
-  background: white;
-  position: fixed;
-  bottom: 10px;
-  left: 50px;
-  z-index: 200;
-`;
 
 // leaf animation on hover
 function App() {
@@ -51,7 +40,6 @@ function App() {
     orderVisible.setOrderVisible(false);
     activeItem.setActiveItem(null);
   }
-  const AppContainer = styled.div``;
 
   return (
     <>
@@ -65,6 +53,7 @@ function App() {
         {...orderVisible}
         {...activeItem}
       />
+      <OrderCompleteDialog {...orderCompleteDialog} {...orders} />
       <Order
         {...orders}
         {...activeItem}
@@ -76,8 +65,6 @@ function App() {
       <Banner />
       <Menu {...activeItem} {...orderVisible} />
       <FoodDialog {...activeItem} {...orders} {...smallScreen} />
-
-      <OrderCompleteDialog {...orderCompleteDialog} {...orders} />
     </>
   );
 }
