@@ -11,7 +11,6 @@ export function useAuth() {
   }
 
   function logout() {
-    console.log("logout attemt");
     auth
       .signOut()
       .then(() => {

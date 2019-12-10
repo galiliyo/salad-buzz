@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components/macro";
 import { Fade } from "Animations/Fade";
 
@@ -9,13 +9,12 @@ const ShadowDiv = styled.div`
   top: 0;
   background-color: black;
   opacity: 0.6;
-
 `;
 
 export const DialogShadow = props => {
   return (
     <Fade show={props.show}>
-      <ShadowDiv />
+      <ShadowDiv onClick={props.clickHandler} />
     </Fade>
   );
 };

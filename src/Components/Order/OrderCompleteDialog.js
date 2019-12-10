@@ -24,7 +24,7 @@ const Message = styled.h5`
 `;
 
 export function OrderCompleteDialog({
-  orderDialogVisible,
+  orderDialogVisible
 }) {
  
   return (

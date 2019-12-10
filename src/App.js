@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { GlobalStyle } from "./Styles/globalStyles";
 import { Navbar } from "./Components/Navbar/Navbar";
 import { Banner } from "./Components/Banner/Banner";
@@ -8,7 +8,8 @@ import { Menu } from "./Components/Menu/Menu";
 import { Order } from "./Components/Order/Order";
 import { useActiveItem } from "./Hooks/useActiveItem";
 import { OrderCompleteDialog } from "./Components/Order/OrderCompleteDialog";
-import styled from "styled-components/macro";
+
+// Hooks
 import { useOrders } from "./Hooks/useOrders";
 import { useTitle } from "./Hooks/useTitle";
 import { useAuth } from "./Hooks/useAuth";
@@ -18,8 +19,10 @@ import { useLogoutDropDown } from "./Hooks/useLogoutDropDown";
 import { useOrderCompleteDialog } from "./Hooks/useOrderCompleteDialog";
 import { useDialogShadow } from "./Hooks/useDialogShadow";
 
-// leaf animation on hover
+// TODo: leaf animation on hover
+
 function App() {
+  // Initialize Hooks
   const activeItem = useActiveItem();
   const orders = useOrders();
   const auth = useAuth();
@@ -36,15 +39,18 @@ function App() {
   useTitle({ ...activeItem }, { ...orders });
 
   function closeAll() {
-    OrderCompleteDialog("close");
+    activeItem.setFoodDialogVisible(false);
+    setTimeout(() => {
+      activeItem.setActiveItem(null);
+    }, 500);
+
     orderVisible.setOrderVisible(false);
-    activeItem.setActiveItem(null);
   }
 
   return (
     <>
       <GlobalStyle />
-      <DialogShadow show={dialogShadow.dialogShadow} onClick={closeAll} />
+      <DialogShadow show={dialogShadow.dialogShadow} clickHandler={closeAll} />
       <Navbar
         {...auth}
         {...smallScreen}
@@ -53,7 +59,7 @@ function App() {
         {...orderVisible}
         {...activeItem}
       />
-      <OrderCompleteDialog {...orderCompleteDialog} {...orders} />
+      <OrderCompleteDialog {...orderCompleteDialog} />
       <Order
         {...orders}
         {...activeItem}

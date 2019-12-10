@@ -21,19 +21,18 @@ const MenuTitle = styled(Title)`
   margin: 30px 0 0px;
 `;
 
-export function Menu({ setActiveItem, orderVisible, setFoodDialogVisible }) {
+export function Menu({ setActiveItem, setFoodDialogVisible }) {
   return (
-    <MenuStyled visible={orderVisible}>
+    <MenuStyled>
       {Object.entries(foods).map(([section, foods], ii) => (
         <div key={ii}>
           <MenuTitle>{section}</MenuTitle>
           <FoodGrid>
             {foods.map((item, i) => {
               return (
-                <div style={{ position: "relative" , display:"flex"}}>
+                <div style={{ position: "relative", display: "flex" }} key={i}>
                   {/*<LeafAnimation />*/}
                   <FoodCard
-                    key={i}
                     item={item}
                     setActiveItem={setActiveItem}
                     setFoodDialogVisible={setFoodDialogVisible}
