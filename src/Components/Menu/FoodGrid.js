@@ -21,6 +21,7 @@ const CardTitle = styled(Title)`
 const Card = styled.div`
   display: flex;
   position:relative;
+  width:100%;
   flex-direction: column;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -50,7 +51,7 @@ export const FoodCard = ({ item, setActiveItem,setFoodDialogVisible }) => {
         setFoodDialogVisible(true);
       }}
     >
-      <img src={item.img} style={{ width: "100%" }} alt="menu item" />
+    {item.img&&<img src={item.img} style={{ width: "100%" }} alt="menu item" />}
       
       <CardTitle>{item.name} </CardTitle>
       <p>{item.desc} </p>

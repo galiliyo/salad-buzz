@@ -6,5 +6,5 @@ export const Banner = styled.div`
   background-image: url("img/banner.jpg");
   background-size: cover;
   background-position: center;
-  /* padding-top: 100px; */
+
 `;

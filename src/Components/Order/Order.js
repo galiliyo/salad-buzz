@@ -91,12 +91,13 @@ function sendOrder(orders, { email, displayName }) {
   const newOrderRef = database.ref("orders").push();
 
   const newOrders = orders.map(order => {
+    {console.log(orders);
+    }
     return Object.keys(order).reduce((acc, orderKey) => {
       if (!order[orderKey] || orderKey === "desc") {
-        //}
         return acc;
       }
-      if (orderKey === "toppings") {
+      if (orderKey === "toppings") {    
         return {
           ...acc,
           [orderKey]: order[orderKey]

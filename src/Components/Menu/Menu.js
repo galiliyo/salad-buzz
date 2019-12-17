@@ -10,6 +10,7 @@ const MenuStyled = styled.div`
   padding: 0px 300px 24px 24px;
   margin: -40px auto;
   overflow-y: hidden;
+  margin-bottom:20px;
 
   @media (max-width: 1354px) {
     padding: 0 24px 40px;

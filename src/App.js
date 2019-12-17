@@ -6,10 +6,10 @@ import { FoodDialog } from "./Components/FoodDialog/FoodDialog";
 import { DialogShadow } from "./Components/UI/DialogShadow";
 import { Menu } from "./Components/Menu/Menu";
 import { Order } from "./Components/Order/Order";
-import { useActiveItem } from "./Hooks/useActiveItem";
 import { OrderCompleteDialog } from "./Components/Order/OrderCompleteDialog";
 
 // Hooks
+import { useActiveItem } from "./Hooks/useActiveItem";
 import { useOrders } from "./Hooks/useOrders";
 import { useTitle } from "./Hooks/useTitle";
 import { useAuth } from "./Hooks/useAuth";
